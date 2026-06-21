@@ -1,9 +1,9 @@
-#:schema node_modules/wrangler/config-schema.json
-
-compatibility_date = "2025-11-17"
-main = "src/index.ts"
-name = "decap-proxy"
-
-# Variable bindings — secrets (GITHUB_OAUTH_ID, GITHUB_OAUTH_SECRET) set via Cloudflare Dashboard or wrangler secret
-[vars]
-GITHUB_REPO_PRIVATE = "1"
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "compatibility_date": "2025-11-17",
+  "main": "src/index.ts",
+  "name": "decap-proxy",
+  "vars": {
+    "GITHUB_REPO_PRIVATE": "1"
+  }
+}
