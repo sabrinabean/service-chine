@@ -17,6 +17,7 @@
 - [ ] **建仓库 secrets**(仓库 → Settings → Secrets and variables → Actions → New repository secret):
   - [ ] `CLOUDFLARE_API_TOKEN` —— 第 2 步生成的 CF API Token
   - [ ] `CLOUDFLARE_ACCOUNT_ID` —— 新 CF 账户的 Account ID(Dashboard 右侧)
+  - [ ] `PUBLIC_TURNSTILE_SITE_KEY` —— 第 4 步的 Turnstile Site Key(前端可见,build 时注入)
 - [ ] **确认 workflow 文件已在仓库**:`.github/workflows/deploy.yml`(已写入,提交推送即可)
 
 ---
@@ -45,7 +46,7 @@
 
 - [ ] Turnstile → Add site → 域名填你的线上域名(或先填 `service-chine.<subdomain>.workers.dev`)。
 - [ ] 复制 **Site Key** + **Secret Key**。
-- [ ] Site Key → 替换 `src/components/homepage/Contacts.astro` 里的 `<PUBLIC_TURNSTILE_SITE_KEY>`(前端可见,也可后续做成环境变量注入)。
+- [ ] Site Key → 填进 GitHub secret `PUBLIC_TURNSTILE_SITE_KEY`(第 1 步已列出);build 时经 Astro `import.meta.env` 注入前端,无需改源码。
 - [ ] Secret Key → 填进 Cloudflare 变量 `TURNSTILE_SECRET`(第 3 步)。
 
 ---

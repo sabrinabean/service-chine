@@ -24,6 +24,9 @@ jobs:
       - run: npm ci
 
       - name: Build (Astro + Cloudflare adapter)
+        env:
+          # 前端可见变量(Astro 构建期注入,PUBLIC_ 前缀暴露给客户端)
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.PUBLIC_TURNSTILE_SITE_KEY }}
         run: npm run build
 
       - name: Deploy to Cloudflare Workers
