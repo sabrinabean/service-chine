@@ -39,6 +39,7 @@
 - [`cms-keystatic.md`](./cms-keystatic.md) — `keystatic.config.ts` 完整配置(对齐 ProCleaning)、categories 改造、法语 label、编辑工作流
 - [`form-notification.md`](./form-notification.md) — 法语表单、Pages Function、Gmail SMTP、法语邮件模板、contacts 页改造
 - [`deployment-isolated-environment.md`](./deployment-isolated-environment.md) — **新 GitHub 账户 + 新 Cloudflare 账户、本机零影响的隔离部署**;GitHub PAT 隔离、wrangler-action 远程部署、双触发 workflow
+- [`deployment-verification-checklist.md`](./deployment-verification-checklist.md) — **部署准备 + 线上验证清单**(各平台动作 + 表单真实发信验证)
 - [`implementation-checklist.md`](./implementation-checklist.md) — 分阶段落地计划,带命令/文件/验证标准
 
 ---

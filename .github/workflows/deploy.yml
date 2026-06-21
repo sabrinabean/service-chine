@@ -1,0 +1,38 @@
+name: Deploy to Cloudflare Workers
+
+on:
+  push:
+    branches: [main]        # Keystatic 保存即 commit main,自动触发 = 无感发布
+  workflow_dispatch:        # 手动重跑开关(Actions 页面点 Run workflow)
+
+# 同一时间只跑一条部署,避免并发覆盖
+concurrency:
+  group: workers-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Build (Astro + Cloudflare adapter)
+        run: npm run build
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # adapter 已生成 dist/server/wrangler.json(main: entry.mjs,
+          # assets.directory: ../client)。wrangler deploy 自动发现。
+          # nodejs_compat 由 CLI flag 注入(Keystatic admin 运行时依赖 tty/util)。
+          #   注:不在仓库放 wrangler.jsonc —— 实测它会破坏 build。
+          command: deploy --compatibility-flag nodejs_compat
