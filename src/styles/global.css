@@ -2,7 +2,8 @@
 @plugin "daisyui";
 
 @theme {
-    --color-main: #35864C; /* #36B864 */
+    --color-main: #C8102E;      /* 中国红(主色) */
+    --color-main-dark: #A50D26; /* 深红(hover / 强调) */
     --color-dark: #111D15;
 }
 
