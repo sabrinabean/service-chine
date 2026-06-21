@@ -27,6 +27,8 @@ jobs:
         env:
           # 前端可见变量(Astro 构建期注入,PUBLIC_ 前缀暴露给客户端)
           PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.PUBLIC_TURNSTILE_SITE_KEY }}
+          # Keystatic admin UI 读取(首次 OAuth 引导生成 GitHub App 后回填)
+          PUBLIC_KEYSTATIC_GITHUB_APP_SLUG: ${{ secrets.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG }}
         run: npm run build
 
       - name: Deploy to Cloudflare Workers

@@ -11,7 +11,11 @@ import { config, fields, collection } from '@keystatic/core';
  * → Pour la mise en ligne, passer à `kind: 'github'` (voir deployment-isolated-environment.md).
  */
 export default config({
-  storage: { kind: 'github' },
+  storage: {
+    kind: 'github',
+    repo: 'sabrinabean/service-chine',  // 仓库 owner/name;直推 main(无感发布)
+    // branchPrefix 留空 = 直推 main;未来需审核工作流时设为 'keystatic/'
+  },
   ui: {
     brand: { name: 'Service Chine' },
   },
