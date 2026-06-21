@@ -11,7 +11,7 @@ import { config, fields, collection } from '@keystatic/core';
  * → Pour la mise en ligne, passer à `kind: 'github'` (voir deployment-isolated-environment.md).
  */
 export default config({
-  storage: { kind: 'local' },
+  storage: { kind: 'github' },
   ui: {
     brand: { name: 'Service Chine' },
   },
@@ -38,8 +38,9 @@ export default config({
           directory: 'src/assets/images/categories',
           publicPath: '../../assets/images/categories/',
         }),
-        content: fields.mdoc({
+        content: fields.mdx({
           label: 'Contenu',
+          extension: 'md',
           options: { formatting: true, links: true },
         }),
       },
