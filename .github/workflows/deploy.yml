@@ -1,9 +1,9 @@
-name: Deploy to Cloudflare Workers
+name: Deploy to Cloudflare
 
 on:
   push:
-    branches: [main]        # Keystatic 保存即 commit main,自动触发 = 无感发布
-  workflow_dispatch:        # 手动重跑开关(Actions 页面点 Run workflow)
+    branches: [main]        # Decap CMS 保存即 commit main,自动触发 = 无感发布
+  workflow_dispatch:        # 手动重跑开关
 
 # 同一时间只跑一条部署,避免并发覆盖
 concurrency:
@@ -11,7 +11,36 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  deploy-proxy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: 'proxy/package-lock.json'
+
+      - run: cd proxy && npm ci
+
+      - name: Deploy OAuth Proxy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: proxy
+          command: deploy
+          # Secrets for proxy workers are set in Cloudflare Dashboard
+          secrets: |
+            GITHUB_OAUTH_ID
+            GITHUB_OAUTH_SECRET
+        env:
+          GITHUB_OAUTH_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+          GITHUB_OAUTH_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
+
+  deploy-site:
+    needs: deploy-proxy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,10 +54,7 @@ jobs:
 
       - name: Build (Astro + Cloudflare adapter)
         env:
-          # 前端可见变量(Astro 构建期注入,PUBLIC_ 前缀暴露给客户端)
           PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.PUBLIC_TURNSTILE_SITE_KEY }}
-          # Keystatic admin UI 读取(首次 OAuth 引导生成 GitHub App 后回填)
-          PUBLIC_KEYSTATIC_GITHUB_APP_SLUG: ${{ secrets.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG }}
         run: npm run build
 
       - name: Deploy to Cloudflare Workers
@@ -36,8 +62,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # adapter 已生成 dist/server/wrangler.json(main: entry.mjs,
-          # assets.directory: ../client)。wrangler deploy 自动发现。
-          # nodejs_compat 由 CLI flag 注入(Keystatic admin 运行时依赖 tty/util)。
-          #   注:不在仓库放 wrangler.jsonc —— 实测它会破坏 build。
           command: deploy --compatibility-flag nodejs_compat

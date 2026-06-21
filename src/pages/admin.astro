@@ -1,0 +1,20 @@
+---
+// Admin CMS page — Decap CMS loads via npm package, takes over the page.
+// Config is served as static asset from public/admin/config.yml.
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
+    <title>Service Chine — Gestion de contenu</title>
+  </head>
+  <body>
+    <script>
+      import 'decap-cms-app';
+    </script>
+  </body>
+</html>
