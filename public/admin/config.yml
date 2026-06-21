@@ -1,5 +1,9 @@
 # Decap CMS configuration for Service Chine
 # Documentation: https://decapcms.org/docs/configuration-options/
+#
+# NOTE: The ADMIN UI is intentionally English for ease of operation.
+# The CONTENT operators type into these fields stays French, because it is
+# rendered verbatim on the French public site.
 
 backend:
   name: github
@@ -11,8 +15,8 @@ backend:
 # Media paths — uploaded images stored under src/assets/<collection>/
 media_folder: "src/assets"
 
-# Locale
-locale: "fr"
+# Locale — English admin UI (site content remains French)
+locale: "en"
 
 # Site URL for previews
 site_url: https://service-chine.sabrinabin-fr.workers.dev
@@ -21,21 +25,21 @@ display_url: https://service-chine.sabrinabin-fr.workers.dev
 publish_mode: editorial_workflow
 
 collections:
-  # ── Catégories ──
+  # ── Categories ──
   - name: categories
-    label: "Catégories"
-    label_singular: "Catégorie"
+    label: "Categories"
+    label_singular: "Category"
     folder: "src/content/categories"
     create: true
     slug: "{{title}}"
     media_folder: ""
     public_folder: "../../assets/categories"
     fields:
-      - { label: "Titre", name: title, widget: string, pattern: ['^[a-zA-Z0-9_-]+$', "Lettres, chiffres, tirets et underscores uniquement"] }
+      - { label: "Title", name: title, widget: string, pattern: ['^[a-zA-Z0-9_-]+$', "Letters, numbers, dashes and underscores only"] }
       - { label: "Description", name: description, widget: text, required: false }
-      - { label: "Ordre d'affichage", name: order, widget: number, valueType: int, default: 0 }
-      - { label: "Image à la une", name: thumbnail, widget: image, required: false, media_folder: "", public_folder: "../../assets/categories" }
-      - { label: "Contenu", name: body, widget: markdown, required: false }
+      - { label: "Display order", name: order, widget: number, valueType: int, default: 0 }
+      - { label: "Featured image", name: thumbnail, widget: image, required: false, media_folder: "", public_folder: "../../assets/categories" }
+      - { label: "Content", name: body, widget: markdown, required: false }
 
   # ── Blog ──
   - name: blog
@@ -47,25 +51,25 @@ collections:
     media_folder: ""
     public_folder: "../../assets/news"
     fields:
-      - { label: "Titre", name: title, widget: string }
+      - { label: "Title", name: title, widget: string }
       - { label: "Description", name: description, widget: text }
-      - { label: "Date de publication", name: pubDate, widget: datetime, format: "MMM DD YYYY" }
-      - { label: "Date de mise à jour", name: updatedDate, widget: datetime, required: false, format: "MMM DD YYYY" }
-      - { label: "Image à la une", name: thumbnail, widget: image, required: false, media_folder: "", public_folder: "../../assets/news" }
-      - label: "Catégorie"
+      - { label: "Publish date", name: pubDate, widget: datetime, format: "MMM DD YYYY" }
+      - { label: "Updated date", name: updatedDate, widget: datetime, required: false, format: "MMM DD YYYY" }
+      - { label: "Featured image", name: thumbnail, widget: image, required: false, media_folder: "", public_folder: "../../assets/news" }
+      - label: "Category"
         name: category
         widget: relation
         collection: categories
-        value_field: title
+        value_field: "{{slug}}"
         search_fields: [title]
         display_fields: [title]
-      - label: "Auteur"
+      - label: "Author"
         name: author
         widget: object
         fields:
-          - { label: "Identifiant", name: slug, widget: string }
-          - { label: "Nom", name: name, widget: string }
-      - { label: "Contenu", name: body, widget: markdown }
+          - { label: "Identifier", name: slug, widget: string }
+          - { label: "Name", name: name, widget: string }
+      - { label: "Content", name: body, widget: markdown }
 
   # ── Services ──
   - name: service
@@ -77,29 +81,29 @@ collections:
     media_folder: ""
     public_folder: "../../assets/services"
     fields:
-      - { label: "Titre", name: title, widget: string }
+      - { label: "Title", name: title, widget: string }
       - { label: "Description", name: description, widget: text }
-      - { label: "Date de publication", name: pubDate, widget: datetime, required: false, format: "MMM DD YYYY" }
-      - { label: "Date de mise à jour", name: updatedDate, widget: datetime, required: false, format: "MMM DD YYYY" }
-      - { label: "Image à la une", name: thumbnail, widget: image, required: false, media_folder: "", public_folder: "../../assets/services" }
-      - { label: "Mis en avant", name: featured, widget: boolean, default: false }
-      - { label: "Contenu", name: body, widget: markdown }
+      - { label: "Publish date", name: pubDate, widget: datetime, required: false, format: "MMM DD YYYY" }
+      - { label: "Updated date", name: updatedDate, widget: datetime, required: false, format: "MMM DD YYYY" }
+      - { label: "Featured image", name: thumbnail, widget: image, required: false, media_folder: "", public_folder: "../../assets/services" }
+      - { label: "Featured", name: featured, widget: boolean, default: false }
+      - { label: "Content", name: body, widget: markdown }
 
-  # ── Équipe ──
+  # ── Team ──
   - name: team
-    label: "Équipe"
-    label_singular: "Membre"
+    label: "Team"
+    label_singular: "Member"
     folder: "src/content/team"
     create: true
     slug: "{{title}}"
     media_folder: ""
     public_folder: "../../assets/team"
     fields:
-      - { label: "Nom", name: title, widget: string }
+      - { label: "Name", name: title, widget: string }
       - { label: "Description", name: description, widget: text }
-      - { label: "Date de publication", name: pubDate, widget: datetime, required: false, format: "MMM DD YYYY" }
-      - { label: "Date de mise à jour", name: updatedDate, widget: datetime, required: false, format: "MMM DD YYYY" }
+      - { label: "Publish date", name: pubDate, widget: datetime, required: false, format: "MMM DD YYYY" }
+      - { label: "Updated date", name: updatedDate, widget: datetime, required: false, format: "MMM DD YYYY" }
       - { label: "Photo", name: thumbnail, widget: image, required: false, media_folder: "", public_folder: "../../assets/team" }
-      - { label: "Mis en avant", name: featured, widget: boolean, default: false }
-      - { label: "Note", name: rating, widget: number, valueType: int, default: 5, min: 1, max: 5 }
-      - { label: "Contenu", name: body, widget: markdown }
+      - { label: "Featured", name: featured, widget: boolean, default: false }
+      - { label: "Rating", name: rating, widget: number, valueType: int, default: 5, min: 1, max: 5 }
+      - { label: "Content", name: body, widget: markdown }
