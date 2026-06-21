@@ -38,7 +38,7 @@ export default config({
           directory: 'src/assets/images/categories',
           publicPath: '../../assets/images/categories/',
         }),
-        content: fields.mdoc({
+        content: fields.mdx({
           label: 'Contenu',
           options: { formatting: true, links: true },
         }),
