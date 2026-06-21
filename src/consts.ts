@@ -2,25 +2,25 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = 'ProCleaning';
-export const SITE_DESCRIPTION = 'Specialized, efficient, and thorough cleaning services';
+export const SITE_DESCRIPTION = 'Services de nettoyage spécialisés, efficaces et minutieux';
 
 
 export const NAV_MENU = [
     {
         url: "/",
-        title: "Home"
+        title: "Accueil"
     },
     {
         url: "#",
-        title: "About us"
+        title: "À propos"
     },
     {
         url: "/service",
-        title: "Service"
+        title: "Services"
     },
     {
         url: "/team",
-        title: "Team"
+        title: "Équipe"
     },
     {
         url: "/blog",

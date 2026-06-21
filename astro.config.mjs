@@ -27,6 +27,15 @@ export default defineConfig({
 	}),
 	vite: {
 		plugins: [tailwindcss()],
+		// cloudflare:sockets 是 workerd-only 运行时模块,node 预渲染环境的
+		// vite optimizeDeps 无法预打包它(报 chunk does not exist)。排除之。
+		optimizeDeps: {
+			exclude: ['cloudflare:sockets', 'cloudflare:email'],
+		},
+		ssr: {
+			// 不要把这些运行时模块当外部 npm 包去 resolve
+			noExternal: [],
+		},
 	},
 	integrations: [
 		keystatic(),

@@ -24,7 +24,19 @@ Gmail SMTP (smtp.gmail.com:587, STARTTLS)
 
 ---
 
-## 1. contacts 页改造(主题 `src/pages/contacts.*`)
+## ⚠️ Astro 6 实测要点(已落地,与上文示例的差异)
+
+实现过程中发现的三个 Astro 6 + cloudflare adapter 关键点,实际代码以此为准:
+
+1. **API 路由路径**:`src/pages/api/lead.ts`(**不是** `functions/api/`)。
+   - Astro 6 cloudflare adapter 走 Workers 统一入口,**不识别 Pages 的 `functions/` 目录约定**。`functions/api/lead.ts` 不会被打包,部署后 404。改用 Astro 原生 API 路由 `src/pages/api/lead.ts`,由 `export const POST` 导出。
+2. **必须 `export const prerender = false`**:
+   - 该路由 `import { connect } from "cloudflare:sockets"` 是 workerd-only 模块。若被 node 预渲染阶段触及,build 报 `ERR_UNSUPPORTED_ESM_URL_SCHEME: Received protocol 'cloudflare:'`。`prerender = false` 让它只在 workerd 运行时跑。
+3. **环境变量来源**:`import { env } from "cloudflare:workers"`(**不是** `context.locals.runtime.env`)。
+   - Astro 6 已移除 `Astro.locals.runtime.env`,运行时日志明确报 `has been removed in Astro v6`。改用 `cloudflare:workers` 的 `env`。
+
+---
+
 
 主题已有 contacts 页(静态)。改造点:
 - 把表单的 `action` 指向 `/api/lead`,`method="POST"`。

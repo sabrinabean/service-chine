@@ -29,7 +29,7 @@ const category = categorySlug ? await resolveCategory(categorySlug) : null;
     <article class="post">
       <div class="breadcrumbs text-sm">
         <ul class="flex! flex-wrap">
-          <li><a href="/">Home</a></li>
+          <li><a href="/">Accueil</a></li>
           <li><a href="./">{breadcrumbParent}</a></li>
           <li>{title}</li>
         </ul>
@@ -40,7 +40,7 @@ const category = categorySlug ? await resolveCategory(categorySlug) : null;
           {
             updatedDate && (
               <div class="last-updated-on">
-                Last updated on <FormattedDate date={updatedDate} />
+                Mis à jour le <FormattedDate date={updatedDate} />
               </div>
             )
           }
@@ -125,7 +125,7 @@ const category = categorySlug ? await resolveCategory(categorySlug) : null;
               )
             }
             <a href="./" class="btn btn-outline">
-              <Icon name="lucide:arrow-left" size={18} /> Go Back</a
+              <Icon name="lucide:arrow-left" size={18} /> Retour</a
             >
 
            
@@ -136,7 +136,7 @@ const category = categorySlug ? await resolveCategory(categorySlug) : null;
       {
         relatedPosts.length > 0 && (
           <section class="mt-10">
-            <h2>Latest Post</h2>
+            <h2>Derniers articles</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
               {relatedPosts.map((item) => (
                 <NewsCard {...item} />
