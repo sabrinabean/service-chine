@@ -21,8 +21,12 @@ export default config({
       label: 'Catégories',
       slugField: 'title',
       path: 'src/content/categories/*',
-      // Catégories : frontmatter uniquement (pas de corps), aligné sur content.config.ts
-      format: { data: 'yaml' },
+      // format contentField 写入 .md(YAML frontmatter + Markdown body),与现有文件格式一致。
+      // 注意:之前 data: 'yaml' 与 .md 文件格式不匹配,Keystatic API 读文件时抛异常(返回 HTML 错误页),
+      // 前端 JSON.parse 报 "Unexpected token '<'"。
+      format: { contentField: 'content' },
+      columns: ['title'],
+      entryLayout: 'content',
       schema: {
         title: fields.slug({
           name: { label: 'Titre de la catégorie', validation: { length: { min: 1 } } },
@@ -33,6 +37,10 @@ export default config({
           label: 'Image à la une',
           directory: 'src/assets/images/categories',
           publicPath: '../../assets/images/categories/',
+        }),
+        content: fields.mdoc({
+          label: 'Contenu',
+          options: { formatting: true, links: true },
         }),
       },
     }),
