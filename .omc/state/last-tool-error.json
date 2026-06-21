@@ -1,0 +1,7 @@
+{
+  "tool_name": "mcp__plugin_context-mode_context-mode__ctx_execute",
+  "tool_input_preview": "{\"code\":\"echo \\\"=== 1. Git 全局身份 ===\\\"\\ngit config --global user.name 2>/dev/null || echo \\\"(未设)\\\"\\ngit config --global user.email 2>/dev/null || echo \\\"(未设)\\\"\\necho \\\"\\\"\\necho \\\"=== 2. Git credential ...",
+  "error": "```shell\necho \"=== 1. Git 全局身份 ===\"\ngit config --global user.name 2>/dev/null || echo \"(未设)\"\ngit config --global user.email 2>/dev/null || echo \"(未设)\"\necho \"\"\necho \"=== 2. Git credential helper(影响 HTTPS 推送的凭证来源)===\"\ngit config --global credential.helper 2>/dev/null || echo \"(未设)\"\necho \"\"\necho \"=== 3. gh CLI(当前登录的账户,token 脱敏)===\"\nif command -v gh >/dev/null 2>&1; then\n  gh --version 2>/dev/null | head -1\n  gh auth status 2>&1 | grep -iE 'Logged in|account|—' | sed -E 's/(token|key|oauth|ghp_[A-Za...",
+  "timestamp": "2026-06-21T01:59:39.571Z",
+  "retry_count": 1
+}
