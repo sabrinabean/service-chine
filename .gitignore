@@ -141,3 +141,10 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Astro / Wrangler build caches
+.astro/
+.wrangler/
+
+# OMC orchestration state (local only)
+.omc/

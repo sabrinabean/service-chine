@@ -4,6 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 import { Icon } from "astro-icon/components";
 import NewsCard from "../components/card/NewsCardRelated.astro";
+import { resolveCategory } from "../utils/categories";
 
 import Layout from "./Main.astro";
 type Props = CollectionEntry<"blog">["data"];
@@ -15,11 +16,12 @@ const {
   updatedDate,
   thumbnail,
   author,
-  category,
+  category: categorySlug,
   relatedPosts = [],
   socials = false,
   breadcrumbParent = "Blog",
 } = Astro.props;
+const category = categorySlug ? await resolveCategory(categorySlug) : null;
 ---
 
 <Layout title={title} description={description} image={thumbnail}>

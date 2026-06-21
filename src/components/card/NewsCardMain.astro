@@ -1,9 +1,11 @@
 ---
 import { Icon } from "astro-icon/components";
 import { formatFrontmatterDate } from "../../utils/date";
+import { resolveCategory } from "../../utils/categories";
 import { Image } from "astro:assets";
 
 const { id, data } = Astro.props;
+const category = await resolveCategory(data.category);
 ---
 
 <article
@@ -24,10 +26,10 @@ const { id, data } = Astro.props;
           />
         </a>
         <a
-          href={`/blog/${data.category.slug}`}
+          href={`/blog/${category.slug}`}
           class="btn bg-main border-main shadow-none text-white px-3 py-1 h-auto text-xs rounded-md [grid-area:1/1/2/2] mb-auto mr-auto mt-2 ml-2"
         >
-          {data.category.title}
+          {category.title}
         </a>
       </div>
     )

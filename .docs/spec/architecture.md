@@ -98,3 +98,18 @@
 ## 关于 on-demand 渲染的说明(架构约束)
 
 Keystatic admin 与表单 Function 需要 Cloudflare 运行时,因此项目**不是 100% 静态**,而是"静态优先 + 少量 on-demand 端点"。这是方案的有意取舍:换来 Keystatic 的可视化编辑与表单后端。绝大多数访客访问的页面(首页、service、blog、详情)仍是构建期静态 HTML,性能与 SEO 不受影响。
+
+## 实测适配要点(已落地于 astro.config / 部署链路)
+
+以下两条是接入 `@astrojs/cloudflare` v13 + Astro 6 时**实测踩到并已解决**的点,记此备查:
+
+1. **`prerenderEnvironment: 'node'`(开发体验必需)**
+   - adapter v13 默认用 Cloudflare `workerd` 运行时预渲染静态页;但部分依赖(`debug`、`swiper` 等)是 CommonJS,在 workerd 下报 `module is not defined`,导致 dev 模式静态页 500。
+   - 解法:`adapter: cloudflare({ prerenderEnvironment: 'node' })`。静态页改用 Node 运行时预渲染;on-demand 路由(Keystatic admin / 表单)仍走 workerd,与生产一致。
+   - 实测:首页 / blog / service / team / contact / keystatic 全部 200,生产 `astro build` 同样成功。
+
+2. **`nodejs_compat` 经部署 flag 传入(不放 `wrangler.jsonc`)**
+   - Keystatic admin 运行时依赖 Node 的 `tty`/`util`,Workers 需开启 `nodejs_compat`。
+   - ⚠️ **不能在仓库根放 `wrangler.jsonc` 声明它** —— 实测 `wrangler.jsonc` 的存在会触发 adapter 与 vite 的交互,build 报 `Could not resolve "virtual:keystatic-config"`。
+   - 解法:部署时用 `wrangler deploy --compatibility-flag nodejs_compat` 传入(见 `deployment-isolated-environment.md` §4.2)。
+

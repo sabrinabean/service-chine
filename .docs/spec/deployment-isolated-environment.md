@@ -107,10 +107,14 @@ git push -u origin main
 
 ### 4.2 工作流文件 `.github/workflows/deploy.yml`
 
-> 双触发:`push` 到 `main` 自动部署(实现"无感发布");保留 `workflow_dispatch` 手动重跑开关。Astro 用 `@astrojs/cloudflare` adapter,`astro build` 产出含 Functions 的 `dist/`,用 wrangler-action 部署到 Pages。
+> 双触发:`push` 到 `main` 自动部署(实现"无感发布");保留 `workflow_dispatch` 手动重跑开关。
+>
+> **部署目标用 Cloudflare Workers**(官方对新项目的推荐;非旧 Pages)。Astro 6 + `@astrojs/cloudflare` adapter 构建后产出 `dist/client`(静态资产)+ `dist/server`(含 adapter 生成的 `wrangler.json` 与 `entry.mjs`),用 `wrangler deploy` 部署。
+>
+> **`nodejs_compat` 必须开启**:Keystatic admin 运行时依赖 `debug` 包(间接引入 Node 的 `tty`/`util`),Cloudflare Workers 默认不提供这些内置模块。**注意:不能在项目根放 `wrangler.jsonc` 来声明它** —— 实测 `wrangler.jsonc` 的存在会触发 `@astrojs/cloudflare` adapter 与 vite 的交互问题,导致 build 报 `Could not resolve "virtual:keystatic-config"`。因此改为**部署时用 `--compatibility-flag nodejs_compat` 传入**(wrangler CLI 原生支持该参数,见下)。
 
 ```yaml
-name: Deploy to Cloudflare Pages
+name: Deploy to Cloudflare Workers
 
 on:
   push:
@@ -119,7 +123,7 @@ on:
 
 # 同一时间只跑一条部署,避免并发覆盖
 concurrency:
-  group: pages-deploy
+  group: workers-deploy
   cancel-in-progress: true
 
 jobs:
@@ -138,13 +142,17 @@ jobs:
       - name: Build (Astro + Cloudflare adapter)
         run: npm run build
 
-      - name: Deploy to Cloudflare Pages
+      - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=service-chine
+          # wrangler deploy 自动读取 adapter 生成的 dist/server/wrangler.json。
+          # nodejs_compat 由 CLI 参数传入(不在仓库放 wrangler.jsonc,避免破坏 build)。
+          command: deploy --compatibility-flag nodejs_compat
 ```
+
+> 说明:`wrangler deploy` 自动发现 adapter 生成的 `dist/server/wrangler.json`(`main: entry.mjs`、`assets.directory: ../client`)。`nodejs_compat` 经 CLI flag 注入。若将来 adapter 修复了 `wrangler.jsonc` 的 vite 解析问题,可改回在仓库声明。
 
 ### 4.3 为何不破坏本机环境
 
