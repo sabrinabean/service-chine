@@ -56,3 +56,93 @@ where npm 2>nul
 ```
 
 **成功标志**：体检信息打印出来（无论各项是否存在）。根据结果跳到对应步骤。
+
+---
+
+## Step 1 · winget 关卡
+
+后续 Git / Node 都用 winget 安装，所以先确保 winget 可用。
+
+**检查（两终端同一命令）：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+winget --version
+```
+
+**cmd：**
+
+```cmd
+:: >
+winget --version
+```
+
+**若报 "winget 不是识别的命令" → ⛔ 人工关卡：**
+
+> 打开 **Microsoft Store** → 搜索 **App Installer**（应用安装程序）→ 点 **安装** 或 **更新** → 完成后**关闭并重开终端** → 回到这里重新运行本步的检查命令。
+
+> 本文档**不自动安装 winget**：在纯 cmd/PowerShell 里自动装 winget 极易失败（依赖 VCLibs、Microsoft.UI.Xaml 等框架包，往往最终仍需 Microsoft Store），故设为人工关卡。
+
+**离线兜底（无 Microsoft Store，较脆弱）：** 从 <https://github.com/microsoft/winget-cli/releases> 下载最新的 `Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle`，在 PowerShell 里执行 `Add-AppxPackage -Path <下载的文件>`。如提示缺框架依赖，还需先装 `VCLibs` 与 `Microsoft.UI.Xaml`。
+
+**成功标志**：`winget --version` 输出版本号（形如 `v1.x.x`）。
+
+---
+
+## Step 2 · Git
+
+**检查：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+git --version
+```
+
+**cmd：**
+
+```cmd
+:: >
+git --version
+```
+
+**若报 "git 不是识别的命令" → 安装：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+winget install --id Git.Git -e --source winget --accept-package-agreements --accept-source-agreements
+```
+
+**cmd：**
+
+```cmd
+:: >
+winget install --id Git.Git -e --source winget --accept-package-agreements --accept-source-agreements
+```
+
+⚠️ **关闭并重开终端**（Git.Git 改了 PATH，旧终端不会刷新）。
+
+**验证（在新终端里）：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+git --version
+```
+
+**cmd：**
+
+```cmd
+:: >
+git --version
+```
+
+**成功标志**：输出版本号（形如 `git version 2.4x.x`）。
+
+> 附注：Git for Windows 同时安装了 **Git Bash** 与 **Git Credential Manager**，Step 5 克隆 private 仓库时需要 GCM 来持久化凭证。
