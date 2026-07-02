@@ -235,3 +235,93 @@ npm -v
 ```
 
 **成功标志**：输出版本号，期望 **≥10**（Node 22 自带的 npm 满足）。
+
+---
+
+## Step 5 · 克隆仓库（private，含凭证持久化）
+
+**前置**：一个**有此仓库访问权限的 GitHub 账号**（本仓库为 private）。
+
+⚠️ **Windows 路径坑**：克隆目录**不要含空格或中文**（sharp、esbuild 等原生工具链对含空格 / Unicode 的工作目录敏感，可能报莫名错误）。推荐克隆到 `C:\dev\`。
+
+**准备目录并克隆：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+New-Item -ItemType Directory -Force -Path C:\dev | Out-Null
+Set-Location C:\dev
+git clone https://github.com/sabrinabean/service-chine.git
+Set-Location service-chine
+```
+
+**cmd：**
+
+```cmd
+:: >
+mkdir C:\dev
+cd C:\dev
+git clone https://github.com/sabrinabean/service-chine.git
+cd service-chine
+```
+
+首次 `git clone` 会弹出 **Git Credential Manager** 登录窗口 → 在浏览器登录 GitHub 并授权 → 凭证写入 **Windows 凭据管理器** → 此后 `git push` / `git pull` 自动复用、无需再登录。
+
+**验证 GCM 已就绪（Git.Git 安装时自带）：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+git credential-manager --version
+git config --global credential.helper
+```
+
+**cmd：**
+
+```cmd
+:: >
+git credential-manager --version
+git config --global credential.helper
+```
+
+**成功标志**：`git credential-manager --version` 输出版本号；`credential.helper` 显示 `manager`（旧版显示 `manager-core`，亦可）。
+
+**验证 clone 成功：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+Test-Path package.json
+```
+
+**cmd：**
+
+```cmd
+:: >
+dir package.json
+```
+
+**成功标志**：能看到 `package.json` 存在（clone 成功即代表鉴权通过、凭证已持久化）。
+
+**兜底（GCM 弹窗失败 / 无浏览器环境）—— 用 Personal Access Token：**
+
+1. GitHub → Settings → Developer settings → Personal access tokens → 生成一个带 **`repo`** 权限的 token。
+2. 重跑 `git clone`，用户名填 **GitHub 用户名**，密码填 **该 token**。
+3. GCM 会把 token 存进凭据管理器，后续免再输入。
+
+**备选（SSH，配置更重）：**
+
+```powershell
+# PS>
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+把生成的公钥（`~/.ssh/id_ed25519.pub`，Windows 上通常在 `C:\Users\<你>\.ssh\`）添加到 GitHub 账号的 SSH keys，然后改用 SSH 地址克隆：
+
+```cmd
+:: >
+git clone git@github.com:sabrinabean/service-chine.git
+```
