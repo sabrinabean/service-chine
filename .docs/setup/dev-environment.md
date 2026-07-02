@@ -325,3 +325,87 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 :: >
 git clone git@github.com:sabrinabean/service-chine.git
 ```
+
+---
+
+## Step 6 · 安装项目依赖
+
+确认当前在仓库根目录（`C:\dev\service-chine`，能 `dir` 到 `package.json`）。
+
+**主命令（全新克隆，用 `npm ci` 最快且严格按 lockfile 安装）：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+npm ci
+```
+
+**cmd：**
+
+```cmd
+:: >
+npm ci
+```
+
+**兜底（`npm ci` 报错，例如 lockfile 与 package.json 不同步）→ 改用：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+npm install
+```
+
+**cmd：**
+
+```cmd
+:: >
+npm install
+```
+
+**验证：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+Test-Path node_modules\astro
+```
+
+**cmd：**
+
+```cmd
+:: >
+dir node_modules\astro
+```
+
+**成功标志**：`node_modules\astro` 存在，且安装命令退出码为 0（无 `npm error` / `ELSPROBLEMS`）。
+
+---
+
+## Step 7 · 启动 dev server
+
+**PowerShell：**
+
+```powershell
+# PS>
+npm run dev
+```
+
+**cmd：**
+
+```cmd
+:: >
+npm run dev
+```
+
+**成功标志**：终端输出中能看到一行：
+
+```
+Local:   http://localhost:4321/
+```
+
+用浏览器打开该地址，能看到站点首页即代表开发环境就绪。
+
+> 备注：首次启动较慢（字体、图标缓存首次生成），请等到出现 `Local:` / ready 行再开浏览器。停止开发服务器按 `Ctrl+C`。
