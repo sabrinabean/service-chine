@@ -409,3 +409,72 @@ Local:   http://localhost:4321/
 用浏览器打开该地址，能看到站点首页即代表开发环境就绪。
 
 > 备注：首次启动较慢（字体、图标缓存首次生成），请等到出现 `Local:` / ready 行再开浏览器。停止开发服务器按 `Ctrl+C`。
+
+---
+
+## Step 8 · 排错
+
+1. **`winget` / `node` / `npm` 装完仍提示 "not recognized"**
+   → PATH 未刷新。**关闭并重新打开终端**，再重试。仍不行则重启电脑。
+
+2. **`sharp` 安装失败（npm error … sharp …）**
+   → 先看详细日志：`npm install --foreground-scripts`。
+   → 装 **Visual Studio Build Tools 2022**（安装器里勾选 "Desktop development with C++" 工作负载）并装 **Python**。
+   → 确认 Node 是 **x64** 架构而非 x86：`node -p "process.arch"` 应输出 `x64`。
+
+3. **端口 4321 被占用**
+   → 换端口启动：
+
+   **PowerShell：**
+
+   ```powershell
+   # PS>
+   npm run dev -- --port 4322
+   ```
+
+   **cmd：**
+
+   ```cmd
+   :: >
+   npm run dev -- --port 4322
+   ```
+
+4. **PowerShell 执行策略拦截脚本**
+   → `npm` / `git` 一般用不到执行策略；仅在确实被拦时执行：
+
+   **PowerShell：**
+
+   ```powershell
+   # PS>
+   Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+   ```
+
+5. **公司网络 / 代理**
+   → 给 npm 和 git 各配代理（把 `http://代理:端口` 换成实际地址）：
+
+   **PowerShell：**
+
+   ```powershell
+   # PS>
+   npm config set https-proxy http://代理:端口
+   git config --global http.proxy http://代理:端口
+   ```
+
+6. **Windows 长路径报错（filename too long）**
+   → 以**管理员身份**打开 PowerShell，执行：
+
+   **PowerShell（管理员）：**
+
+   ```powershell
+   # PS>
+   git config --system core.longpaths true
+   ```
+
+---
+
+## 进一步（超出最小轨道）
+
+本指南止步于 `npm run dev` 本地预览。以下能力按需另见对应文档：
+
+- **Decap CMS 本地内容编辑、`proxy/` OAuth Worker、Cloudflare 部署** → `.docs/spec/2026-06-21-decap-cms-migration/`（含 `setup-oauth-app.md`、`deploy-proxy.md`、`deploy-site.md`、`troubleshooting.md`）。
+- **站点 / 后台运维（Decap admin 英文 UI、分类关系）** → `.docs/operation/admin-operation-guide.md`。
