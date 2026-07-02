@@ -146,3 +146,92 @@ git --version
 **成功标志**：输出版本号（形如 `git version 2.4x.x`）。
 
 > 附注：Git for Windows 同时安装了 **Git Bash** 与 **Git Credential Manager**，Step 5 克隆 private 仓库时需要 GCM 来持久化凭证。
+
+---
+
+## Step 3 · Node.js
+
+**版本判定**：输出 `vX.Y.Z` 时，满足 **X > 22，或 X == 22 且 Y ≥ 12** 即可（对应 `package.json` 的 `engines.node >=22.12.0`）。
+
+**检查：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+node -v
+```
+
+**cmd：**
+
+```cmd
+:: >
+node -v
+```
+
+**若 "node 不是识别的命令"（缺失）→ 安装：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+winget install --id OpenJS.NodeJS.LTS -e --accept-package-agreements --accept-source-agreements
+```
+
+**cmd：**
+
+```cmd
+:: >
+winget install --id OpenJS.NodeJS.LTS -e --accept-package-agreements --accept-source-agreements
+```
+
+**若已安装但版本过低（X==22 且 Y<12）→ 升级：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+winget upgrade --id OpenJS.NodeJS.LTS -e --accept-package-agreements --accept-source-agreements
+```
+
+⚠️ **关闭并重开终端**（PATH 与 npm 全局目录需要新终端才生效）。
+
+**验证（在新终端里）：**
+
+**PowerShell：**
+
+```powershell
+# PS>
+node -v
+```
+
+**cmd：**
+
+```cmd
+:: >
+node -v
+```
+
+**成功标志**：版本号命中上面的判定（如 `v22.13.0`、`v22.20.0`、`v24.x.x` 均可）。
+
+---
+
+## Step 4 · npm
+
+npm 随 Node.js 自带，**无需单独安装**，仅验证。
+
+**PowerShell：**
+
+```powershell
+# PS>
+npm -v
+```
+
+**cmd：**
+
+```cmd
+:: >
+npm -v
+```
+
+**成功标志**：输出版本号，期望 **≥10**（Node 22 自带的 npm 满足）。
