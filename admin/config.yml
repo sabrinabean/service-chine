@@ -1,5 +1,16 @@
 backend:
-  name: github
-  repo: sabrinabean/service-chine
-  base_url: decap-proxy.sabrinabin-fr.workers.dev
-  # ... 其他配置
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    folder: "src/content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
