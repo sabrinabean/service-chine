@@ -1,5 +1,5 @@
 backend:
   name: github
   repo: sabrinabean/service-chine
-  base_url: https://service-chine.com
+  base_url: decap-proxy.sabrinabin-fr.workers.dev
   # ... 其他配置
