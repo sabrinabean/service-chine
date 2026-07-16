@@ -1,5 +1,5 @@
 backend:
   name: github
-  repo: 您的GitHub用户名/您的仓库名
-  branch: main
+  repo: sabrinabean/service-chine
   base_url: https://decap-proxy.sabrinabin-fr.workers.dev
+  # ... 其他配置
