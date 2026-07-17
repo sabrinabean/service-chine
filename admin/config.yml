@@ -2,8 +2,9 @@ backend:
   name: github
   repo: sabrinabean/service-chine
   branch: main
-  # 💡 下面这行是最关键的，必须改成你现在可用的 proxy Workers 地址
+  # 💡 必须指向你的代理 Worker (那个返回 "hello" 的 Worker)
   base_url: https://decap-proxy.sabrinabin-fr.workers.dev
+  # 💡 必须是 /auth，配合代理 Worker 进行 GitHub 握手
   auth_endpoint: /auth
 
 media_folder: "public/images/uploads"
