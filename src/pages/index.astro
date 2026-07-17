@@ -39,7 +39,6 @@ const description = "SERVICE-CHINE: Import-Export Chine, les 5 bonnes raisons d'
         <p>Il n'est pas une semaine sans que nous recevions des mails d'entreprises qui nous expliquent leurs déboires sur les produits reçus d'un <a href="/fabricationenchine">fabricant Chinois</a>, d'un fournisseur Chinois contactés par l'intermédiaire d'Alibaba, de GlobalMarket ou autres réseaux.<br/>Il n'est pas une semaine sans que nous entendions parler de problèmes industriels, d'entrepreneurs qui ont perdu temps et argent à vouloir s'implanter en Chine sans expérience, sans véritable connaissance du pays et des us et coutumes locales.<br/>SERVICE-CHINE vous conseille les bonnes stratégies d'achat ou d'implantation en Chine.</p>
       </div>
       <div class="col">
-        <!-- 图片改为宽度100%自适应列宽，高度自动 -->
         <img src="/assets/Service-Chine-OEM.jpg" alt="Service-Chine-OEM" style="width:100%; height:auto; display:block;">
       </div>
     </div>
@@ -65,14 +64,15 @@ const description = "SERVICE-CHINE: Import-Export Chine, les 5 bonnes raisons d'
       <div class="col">
         <p><a href="/servicechine">Service en Chine à la carte</a> <br/>– Votre <a href="/bureauderepresentationenchine">bureau de représentation en Chine</a><br/>– <a href="/voyagedaffaireenchine">Voyage d'affaire en Chine, préparation</a>, accompagnement<br/>– <a href="/interpretefrancaischinoistraduction">Traduction Chinois-Français-Anglais</a><br/>– <a href="/interpretefrancaischinoistraduction">Mettre à votre disposition une Interprète</a><br/>– <a href="/salondecanton">Visite de la foire de Canton</a> (Salon de Canton)<br/>– Visite de la foire de Hong-Kong<br/>– Visite de salons spécialisés en Chine<br/>– Organisation de séminaires et congrès en Chine<br/>– Evènementiel en Chine</p>
       </div>
-<div style="display:flex; gap:10px; align-items:stretch; flex-wrap:wrap; max-width:100%;">
-  <div style="flex:0 1 auto; min-width:120px; max-width:100%; display:flex; align-items:stretch;">
-    <img src="/assets/Hong-Kong-service-chine.jpg" alt="Hong-Kong-service-chine" style="width:auto; height:100%; max-width:100%; object-fit:contain; display:block;">
-  </div>
-  <div style="flex:0 1 auto; min-width:120px; max-width:100%; display:flex; align-items:stretch;">
-    <img src="/assets/service-chine-canton-guangzhou.jpg" alt="service-chine-canton-guangzhou" style="width:auto; height:100%; max-width:100%; object-fit:contain; display:block;">
-  </div>
-</div>
+      <!-- ★★★ 最后两张图片容器（独立于普通图片规则） ★★★ -->
+      <div style="display:flex; gap:10px; align-items:stretch; flex-wrap:wrap; max-width:100%;">
+        <div style="flex:0 1 auto; min-width:120px; max-width:100%; display:flex; align-items:stretch;">
+          <img src="/assets/Hong-Kong-service-chine.jpg" alt="Hong-Kong-service-chine" style="width:auto; height:100%; max-width:100%; object-fit:contain; display:block;">
+        </div>
+        <div style="flex:0 1 auto; min-width:120px; max-width:100%; display:flex; align-items:stretch;">
+          <img src="/assets/service-chine-canton-guangzhou.jpg" alt="service-chine-canton-guangzhou" style="width:auto; height:100%; max-width:100%; object-fit:contain; display:block;">
+        </div>
+      </div>
     </div>
 
     <!-- ===== 表单部分 ===== -->
@@ -91,22 +91,18 @@ const description = "SERVICE-CHINE: Import-Export Chine, les 5 bonnes raisons d'
           <a href="skype:sabrinabean1005?chat"><img src="/assets/call_green_white_153x63.png" alt="skype" width="153" height="63"></a>
         </p>
         <p>Unit 903-6A, 9/., 33 Ashley Rd, Tsim Sha Tsui, Kowloon<br>HONG KONG</p>
-        <!-- ===== 修改：分享图标与 BaseLayout.astro 保持一致 ===== -->
-        <!-- 保留原有颜色样式（#666 悬停 #DC214C），仅替换图标列表 -->
-       
-<div class="elementor-social-icons-wrapper" style="justify-content:center;">
-  <a class="elementor-icon" href="#"><i class="fab fa-facebook-f"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-twitter"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-instagram"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-youtube"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-weixin"></i></a>
-</div>
-
-        <!-- ===== 修改结束 ===== -->
+        <!-- ===== 分享图标 ===== -->
+        <div class="elementor-social-icons-wrapper" style="justify-content:center;">
+          <a class="elementor-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-twitter"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-youtube"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-weixin"></i></a>
+        </div>
       </div>
 
-      <!-- 表单块：使用 inline-block 居中，宽度 70%，输入框100%撑满 -->
+      <!-- 表单块 -->
       <ContactForm />
     </div>
     <!-- ===== 表单结束 ===== -->
@@ -115,7 +111,7 @@ const description = "SERVICE-CHINE: Import-Export Chine, les 5 bonnes raisons d'
   </div>
 </BaseLayout>
 
-<!-- 超链接样式 -->
+<!-- 超链接样式 + 修正后的图片响应式控制 -->
 <style>
   a {
     color: #DC214C !important;
@@ -124,5 +120,72 @@ const description = "SERVICE-CHINE: Import-Export Chine, les 5 bonnes raisons d'
   }
   a:hover {
     color: #b01a3a !important;
+  }
+
+  /* ===== 图片响应式规则 ===== */
+  /* PC端（≥992px） */
+  @media (min-width: 992px) {
+    /* 1. 所有普通图片（排除特殊图片和最后两张容器内的图片）缩小20%并居中 */
+    .entry-content img:not([src*="service-chine-contact-newsletter"]):not([src*="Salon-de-Canton-2011"]):not(.flex-row img):not(div[style*="display:flex"] img) {
+      width: 80% !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      display: block !important;
+      height: auto !important;
+    }
+
+    /* 2. contact-newsletter 保持原尺寸，居中 */
+    .entry-content img[src*="service-chine-contact-newsletter"] {
+      width: auto !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      display: block !important;
+    }
+
+    /* 3. Salon 图片保持100%宽度 */
+    .entry-content img[src*="Salon-de-Canton-2011"] {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      display: block !important;
+    }
+
+    /* 4. 最后两张图片容器：并排各占一半（按比例自适应），等高 */
+    .entry-content > div[style*="display:flex"] > div {
+      flex: 0 1 calc(50% - 5px) !important;
+      max-width: calc(50% - 5px) !important;
+    }
+    .entry-content > div[style*="display:flex"] img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+    }
+  }
+
+  /* 手机端（≤991px） */
+  @media (max-width: 991px) {
+    /* 所有图片宽度100%，高度自动 */
+    .entry-content img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: none !important;
+      margin: 0 auto !important;
+      display: block !important;
+    }
+
+    /* 最后两张图片容器：纵向排列，每张占一行 */
+    .entry-content > div[style*="display:flex"] {
+      flex-direction: column !important;
+    }
+    .entry-content > div[style*="display:flex"] > div {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+    }
+    .entry-content > div[style*="display:flex"] img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: none !important;
+    }
   }
 </style>
