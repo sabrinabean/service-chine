@@ -1,27 +1,19 @@
 ---
-import Layout from "../layouts/Main.astro";
-import Logo from "../components/Logo.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 interface Props {
   error: unknown;
 }
-
 const { error } = Astro.props;
 ---
-
-<Layout title="500 Error">
-  <section class="section flex-1 flex flex-col justify-center items-center">
-    <div class="container text-center grid gap-4">
-      <div class="text-center mx-auto">
-        <Logo />
-      </div>
-      <h1 class="text-5xl lg:text-9xl font-bold">500</h1>
-      <p>
-        {error instanceof Error ? error.message : "Unknown error"}
-      </p>
-      <a href="/" class="btn btn-neutral mx-auto shadow-none rounded-none"
-        >GO TO HOME</a
-      >
-    </div>
-  </section>
-</Layout>
+<BaseLayout title="Erreur serveur - SERVICE CHINE">
+  <div slot="content" style="text-align:center; padding:40px 0;">
+    <h1 style="font-size:24pt; color:#DC0000; font-weight:600; margin-bottom:0.5em;">500 — Erreur serveur</h1>
+    <p style="font-size:15px; line-height:1.8; margin:1em 0 2em;">
+      Une erreur est survenue. Veuillez réessayer ultérieurement.
+    </p>
+    <p style="text-align:center; margin-top:1em;">
+      <a href="/" style="color:#DC214C; text-decoration:none;">← Retour à l'accueil</a>
+    </p>
+  </div>
+</BaseLayout>

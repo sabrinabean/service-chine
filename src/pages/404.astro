@@ -1,19 +1,12 @@
 ---
-import Layout from "../layouts/Main.astro";
-import Logo from "../components/Logo.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-
-<Layout title="Not found">
-  <section class="section flex-1 flex flex-col justify-center items-center">
-    <div class="container text-center grid gap-4">
-      <div class="text-center mx-auto">
-        <Logo />
-      </div>
-      <h1 class="text-5xl lg:text-[10em] font-bold leading-none">404</h1>
-      <p>Sorry, we couldn't fint that page</p>
-      <a href="/" class="btn btn-neutral mx-auto shadow-none rounded-none"
-        >GO TO HOME</a
-      >
-    </div>
-  </section>
-</Layout>
+<BaseLayout title="Page introuvable - SERVICE CHINE">
+  <div slot="content" style="text-align:center; padding:40px 0;">
+    <h1 style="font-size:24pt; color:#DC0000; font-weight:600; margin-bottom:0.5em;">404 — Page introuvable</h1>
+    <p style="font-size:15px; line-height:1.8; margin:1em 0 2em;">
+      Désolé, la page que vous recherchez est introuvable.
+    </p>
+    <a href="/" style="color:#DC214C; text-decoration:none;">← Retour à l'accueil</a>
+  </div>
+</BaseLayout>
