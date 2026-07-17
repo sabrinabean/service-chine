@@ -1,21 +1,6 @@
 backend:
   name: github
-  repo: sabrinabean/service-chine
+  repo: sabirinabean/service-chine
   branch: main
-  # 💡 必须指向你的代理 Worker (那个返回 "hello" 的 Worker)
-  base_url: https://decap-proxy.sabrinabin-fr.workers.dev
-  # 💡 必须是 /auth，配合代理 Worker 进行 GitHub 握手
+  base_url: https://service-chine.sabrinabin-fr.workers.dev
   auth_endpoint: /auth
-
-media_folder: "public/images/uploads"
-public_folder: "/images/uploads"
-
-collections:
-  - name: "pages"
-    label: "Pages"
-    folder: "src/content/pages"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
