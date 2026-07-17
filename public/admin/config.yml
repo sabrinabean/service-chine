@@ -68,15 +68,16 @@ collections:
         widget: object
 
   # ── Pages ──
-  - name: "pages"              # 新增 Pages 集合
+  - name: "pages"
     label: "Pages"
-    folder: "content/pages"    # 指定存放页面文件的文件夹
+    folder: "src/content/pages"      # 修正路径，与其他集合保持一致
     create: true
+    slug: "{{slug}}"                 # 可选，定义文件命名规则
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "URL Path", name: "path", widget: "string" }  # 页面路径，如 /about
-      - { label: "Body", name: "body", widget: "markdown" }     # 正文，使用 markdown 或 html
-      # 还可以加其他字段，如 SEO 标题、描述等
+      - { label: "URL Path", name: "path", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      # 如果需要额外字段（如 SEO），按这个格式继续添加即可
         fields:
           - { label: "Identifier", name: slug, widget: string }
           - { label: "Name", name: name, widget: string }
