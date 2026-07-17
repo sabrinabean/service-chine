@@ -374,19 +374,21 @@ const postsJson = JSON.stringify(sortedPosts);
         padding: 10px 0;
       }
       .nav-menu ul.menu.open { display: flex; }
+      /* ★★★ 移动端子菜单默认显示，无需点击展开 ★★★ */
       .nav-menu ul.menu li .sub-menu {
         position: static;
         box-shadow: none;
         padding-left: 20px;
         background: transparent;
-        display: none;  /* 默认隐藏 */
-      }
-      .nav-menu ul.menu li .sub-menu.open {
-        display: flex;  /* 展开时显示 */
+        display: flex;        /* 直接显示 */
+        flex-direction: column;
+        margin-top: 4px;
       }
       .nav-menu ul.menu li .sub-menu li a {
         color: #ddd;
         border-left-color: transparent;
+        padding: 4px 0;
+        font-size: 0.85rem;
       }
       .nav-menu ul.menu li .sub-menu li a:hover {
         color: #ffd700;
@@ -454,7 +456,7 @@ const postsJson = JSON.stringify(sortedPosts);
       <div class="header-nav-row">
         <div class="container">
           <div class="nav-menu">
-            <!-- ★ 修改：移除 onclick，由 JS 统一控制 ★ -->
+            <!-- ★ 移除 onclick，由 JS 统一控制 ★ -->
             <div class="menu-toggle">
               <i class="fas fa-bars"></i>
             </div>
@@ -593,7 +595,6 @@ const postsJson = JSON.stringify(sortedPosts);
         </div>
         <div class="footer-bottom">
           <div class="site-info">&copy; 2009 – 2026 SERVICE CHINE. All rights reserved.</div>
-          <!-- ★ 修改：社交图标与导航栏保持一致 ★ -->
           <div class="footer-social">
             <span class="single-icon"><a href="#"><i class="fab fa-facebook-f"></i></a></span>
             <span class="single-icon"><a href="#"><i class="fab fa-twitter"></i></a></span>
@@ -621,7 +622,7 @@ const postsJson = JSON.stringify(sortedPosts);
     });
     btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-    // ★★★ 移动端菜单切换（修复后） ★★★
+    // ★★★ 移动端菜单切换（汉堡菜单） ★★★
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu ul.menu');
     if (menuToggle && navMenu) {
@@ -631,34 +632,8 @@ const postsJson = JSON.stringify(sortedPosts);
       });
     }
 
-    // ★★★ 移动端子菜单折叠（新增） ★★★
-    function initMobileSubMenus() {
-      if (window.innerWidth <= 992) {
-        document.querySelectorAll('.menu-item-has-children > a').forEach(parentLink => {
-          // 移除之前的监听，避免重复绑定
-          parentLink.removeEventListener('click', handleSubMenuClick);
-          parentLink.addEventListener('click', handleSubMenuClick);
-        });
-      }
-    }
-
-    function handleSubMenuClick(e) {
-      const sub = this.nextElementSibling;
-      if (sub && sub.classList.contains('sub-menu')) {
-        e.preventDefault();
-        sub.classList.toggle('open');
-      }
-    }
-
-    // 初始调用
-    initMobileSubMenus();
-
-    // 窗口尺寸变化时重新初始化（防抖）
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(initMobileSubMenus, 200);
-    });
+    // ★★★ 移除对父级菜单点击的拦截，让链接正常跳转 ★★★
+    // 不再绑定任何事件，子菜单在移动端默认显示
 
     // 搜索功能（保持不变）
     const searchInput = document.getElementById('search-input');
