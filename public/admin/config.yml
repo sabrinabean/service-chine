@@ -47,14 +47,14 @@ collections:
     label_singular: "Article"
     folder: "src/content/blog"
     create: true
-    slug: "{{title}}"
+    slug: "{{pubDate}}-{{title}}"
     media_folder: ""
     public_folder: "../../assets/news"
     fields:
       - { label: "Title", name: title, widget: string }
       - { label: "Description", name: description, widget: text }
-      - { label: "Publish date", name: pubDate, widget: datetime, format: "MMM DD YYYY" }
-      - { label: "Updated date", name: updatedDate, widget: datetime, required: false, format: "MMM DD YYYY" }
+      - { label: "Publish date", name: pubDate, widget: datetime, format: "YYYY-MM-DD" }
+      - { label: "Updated date", name: updatedDate, widget: datetime, required: false, format: "YYYY-MM-DD" }
       - { label: "Featured image", name: thumbnail, widget: image, required: false, media_folder: "", public_folder: "../../assets/news" }
       - label: "Category"
         name: category
