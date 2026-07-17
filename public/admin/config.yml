@@ -67,18 +67,6 @@ collections:
         name: author
         widget: object
 
-  # ── Pages ──
-  - name: "pages"
-    label: "Pages"
-    folder: "src/content/pages"      # 修正路径，与其他集合保持一致
-    create: true
-    slug: "{{slug}}"                 # 可选，定义文件命名规则
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "URL Path", name: "path", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      # 如果需要额外字段（如 SEO），按这个格式继续添加即可
-        fields:
           - { label: "Identifier", name: slug, widget: string }
           - { label: "Name", name: name, widget: string }
       - { label: "Content", name: body, widget: markdown }
