@@ -66,6 +66,16 @@ collections:
       - label: "Author"
         name: author
         widget: object
+
+  #- name: "pages"              # 新增 Pages 集合
+    label: "Pages"
+    folder: "content/pages"    # 指定存放页面文件的文件夹
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "URL Path", name: "path", widget: "string" }  # 页面路径，如 /about
+      - { label: "Body", name: "body", widget: "markdown" }     # 正文，使用 markdown 或 html
+      # 还可以加其他字段，如 SEO 标题、描述等
         fields:
           - { label: "Identifier", name: slug, widget: string }
           - { label: "Name", name: name, widget: string }
