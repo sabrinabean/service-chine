@@ -66,8 +66,16 @@ collections:
       - label: "Author"
         name: author
         widget: object
-
+        fields:
           - { label: "Identifier", name: slug, widget: string }
           - { label: "Name", name: name, widget: string }
       - { label: "Content", name: body, widget: markdown }
 
+  # ── Pages ──
+  - name: pages
+    label: "Pages"
+    folder: "src/content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
