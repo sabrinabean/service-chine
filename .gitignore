@@ -148,3 +148,6 @@ vite.config.ts.timestamp-*
 
 # OMC orchestration state (local only)
 .omc/
+
+# Local git worktrees (reference/feature checkouts)
+.worktree/

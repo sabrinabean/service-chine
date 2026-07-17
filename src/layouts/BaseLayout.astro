@@ -1,0 +1,665 @@
+---
+// BaseLayout - 布局 + 标题样式优化
+import { getCollection } from 'astro:content';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = "SERVICE CHINE" } = Astro.props;
+const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "";
+
+// ========== 动态获取博客文章(来自 blog 内容集合,decap 可编辑) ==========
+// 注:原 Astro.glob 在 Astro 6 已移除,改用 getCollection。
+const sortedPosts = (await getCollection('blog'))
+  .map((entry) => ({
+    url: `/blog/${entry.id}`,
+    title: entry.data.title,
+    date: entry.data.pubDate
+      ? new Date(entry.data.pubDate).toISOString().slice(0, 10)
+      : '',
+    description: entry.data.description ?? '',
+  }))
+  .sort((a, b) => {
+    const dateA = new Date(a.date || '1970-01-01').getTime();
+    const dateB = new Date(b.date || '1970-01-01').getTime();
+    return dateB - dateA;
+  });
+
+const sidebarPosts = sortedPosts.slice(0, 8);
+const postsJson = JSON.stringify(sortedPosts);
+// ================================================================
+---
+
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== 基础重置 & 全局 ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #c97c76;
+      --primary-dark: #8e4d48;
+      --link-color: #DC214C;
+      --link-hover: #b01a3a;
+      --text: #3d3d3d;
+      --bg-light: #f9f9f9;
+      --container-width: 1200px;
+    }
+    body { font-family: 'Poppins', sans-serif; color: var(--text); background: #fff; line-height: 1.6; }
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: 0.2s;
+    }
+    a:hover {
+      color: var(--link-hover);
+      border-color: var(--link-color);
+    }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Josefin Sans', serif; font-weight: 600; margin-bottom: 0.5em; }
+    .container { max-width: var(--container-width); margin: 0 auto; padding: 0 20px; }
+    img { max-width: 100%; height: auto; border-radius: 4px; }
+
+    /* ===== HEADER ===== */
+    .site-header { background: #fff; border-bottom: none; }
+    .header-logo-row {
+      background: #CA0101;
+      padding: 16px 0;
+    }
+    .header-logo-row .container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .logo img {
+      max-height: 114px;
+      width: auto;
+    }
+    .header-nav-row {
+      background: #4578AD;
+      padding: 0;
+    }
+    .header-nav-row .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .nav-menu ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+    .nav-menu ul li {
+      position: relative;
+    }
+    .nav-menu ul li a {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #fff;
+      border-bottom: none;
+      padding: 12px 0;
+      display: inline-block;
+    }
+    .nav-menu ul li a:hover {
+      color: #ffd700;
+    }
+    .nav-menu ul li .sub-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 8px 0;
+      min-width: 200px;
+      z-index: 100;
+      flex-direction: column;
+    }
+    .nav-menu ul li:hover .sub-menu {
+      display: flex;
+    }
+    .nav-menu ul li .sub-menu li a {
+      color: #333;
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      border-left: 3px solid transparent;
+    }
+    .nav-menu ul li .sub-menu li a:hover {
+      border-left-color: var(--link-color);
+      color: var(--link-color);
+    }
+    .header-social {
+      display: flex;
+      gap: 12px;
+      margin-left: 10px;
+    }
+    .header-social a {
+      color: #fff;
+      font-size: 1.1rem;
+      border-bottom: none;
+    }
+    .header-social a:hover {
+      color: #ffd700;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+      padding: 8px 0;
+    }
+
+    /* ===== CONTENT ===== */
+    .site-content { padding: 40px 0; }
+    .page-wrapper {
+      display: flex;
+      gap: 3%;
+    }
+    #primary {
+      flex: 0 0 72%;
+      max-width: 72%;
+    }
+    #secondary {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+    .image-showcase {
+      display: flex;
+      gap: 0;
+      margin-bottom: 30px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .image-showcase .showcase-item {
+      flex: 1;
+      height: 180px;
+      overflow: hidden;
+    }
+    .image-showcase .showcase-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 0;
+    }
+    .entry-content {
+      background: var(--bg-light);
+      padding: 25px 30px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .entry-content h1, .entry-content h2 {
+      font-size: 12pt;
+      text-align: center;
+      margin-bottom: 0.75em;
+    }
+    .entry-content h5, .entry-content .subtitle {
+      font-size: 10pt;
+      text-align: center;
+      color: #DC0000;
+      margin-top: 0.75em;
+      margin-bottom: 1em;
+    }
+    .entry-content h3, .entry-content h4 { font-size: 14px; }
+    .entry-content p, .entry-content li, .entry-content div:not(.elementor-image) {
+      font-size: 10px;
+    }
+    .entry-content ol { padding-left: 20px; margin: 10px 0; }
+    .entry-content ol li { margin-bottom: 4px; }
+    .entry-content .elementor-image { margin: 15px 0; }
+
+    /* ===== SIDEBAR ===== */
+    .widget {
+      background: var(--bg-light);
+      padding: 20px;
+      border-radius: 6px;
+      margin-bottom: 30px;
+    }
+    .widget-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #b01a3a;
+      border-bottom: 2px solid #b01a3a;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+    .widget ul {
+      list-style: none;
+      padding: 0;
+    }
+    .widget ul li {
+      margin-bottom: 6px;
+      padding-left: 16px;
+      position: relative;
+    }
+    .widget ul li:before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--link-color);
+    }
+    .widget ul li a {
+      color: #333;
+      border-bottom: none;
+    }
+    .widget ul li a:hover {
+      color: var(--link-color);
+    }
+    .widget img {
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: block;
+      margin: 0 auto 10px;
+      max-width: 100%;
+    }
+
+    /* 搜索框样式 */
+    .search-form {
+      display: flex;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .search-form input {
+      flex: 1;
+      padding: 8px 12px;
+      border: none;
+      outline: none;
+    }
+    .search-form button {
+      background: var(--link-color);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+    .search-form button:hover {
+      background: var(--link-hover);
+    }
+
+    /* 搜索结果列表 */
+    #search-results {
+      margin-top: 10px;
+    }
+    #search-results ul {
+      list-style: none;
+      padding: 0;
+    }
+    #search-results ul li {
+      margin-bottom: 4px;
+      padding-left: 16px;
+      position: relative;
+    }
+    #search-results ul li:before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--link-color);
+    }
+    #search-results ul li a {
+      color: #333;
+      text-decoration: none;
+      border-bottom: none;
+      font-size: 0.9rem;
+    }
+    #search-results ul li a:hover {
+      color: var(--link-color);
+    }
+    .search-no-result {
+      color: #999;
+      font-size: 0.9rem;
+      padding: 5px 0;
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer { background: #222; color: #ccc; padding: 40px 0 0; margin-top: 40px; }
+    .site-footer a { color: #ccc; border-bottom: none; }
+    .site-footer a:hover { color: #fff; }
+    .footer-widgets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; padding-bottom: 30px; border-bottom: 1px solid #444; }
+    .footer-widget .widget-title { color: #fff; border-bottom-color: #555; }
+    .footer-widget ul { list-style: none; padding: 0; }
+    .footer-widget ul li { margin-bottom: 4px; }
+    .footer-bottom { padding: 16px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; border-top: 1px solid #444; margin-top: 20px; }
+    .footer-bottom .site-info { font-size: 0.85rem; color: #999; }
+    .footer-social .single-icon { display: inline-block; margin-left: 12px; }
+    .footer-social .single-icon a { color: #999; font-size: 1.1rem; }
+    .footer-social .single-icon a:hover { color: #fff; }
+
+    /* ===== SCROLL TOP ===== */
+    .scroll-top { position: fixed; bottom: 30px; right: 30px; background: var(--link-color); color: #fff; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: 0.3s; z-index: 999; border: none; font-size: 1.2rem; }
+    .scroll-top.visible { opacity: 1; }
+    .scroll-top:hover { background: var(--link-hover); }
+
+    /* ===== FORM ===== */
+    .wpcf7-form label { display: block; font-weight: 500; margin-top: 10px; }
+    .wpcf7-form input, .wpcf7-form textarea { width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; margin-top: 4px; }
+    .wpcf7-form input[type="submit"] { background: var(--link-color); color: #fff; border: none; padding: 10px 24px; cursor: pointer; font-weight: 600; border-radius: 4px; width: auto; margin-top: 12px; }
+    .wpcf7-form input[type="submit"]:hover { background: var(--link-hover); }
+    .gyan-cf7-style-box { background: #f5f5f5; padding: 20px; border-radius: 6px; }
+    .elementor-social-icons-wrapper { display: flex; gap: 12px; margin-top: 10px; }
+    .elementor-social-icons-wrapper .elementor-icon { color: #666; font-size: 1.2rem; border-bottom: none; }
+    .elementor-social-icons-wrapper .elementor-icon:hover { color: var(--link-color); }
+    .flex-row { display: flex; gap: 30px; flex-wrap: wrap; }
+    .flex-row .col { flex: 1 1 45%; min-width: 250px; }
+    .aligncenter { display: block; margin: 0 auto; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .menu-toggle { display: block; }
+      .nav-menu ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #4578AD;
+        padding: 10px 0;
+      }
+      .nav-menu ul.open { display: flex; }
+      .nav-menu ul li .sub-menu {
+        position: static;
+        box-shadow: none;
+        padding-left: 20px;
+        background: transparent;
+      }
+      .nav-menu ul li .sub-menu li a {
+        color: #ddd;
+        border-left-color: transparent;
+      }
+      .nav-menu ul li .sub-menu li a:hover {
+        color: #ffd700;
+        border-left-color: #ffd700;
+      }
+      .header-nav-row .container { flex-wrap: wrap; }
+      .header-social { margin-left: 0; margin-top: 5px; }
+      .page-wrapper { flex-direction: column; gap: 20px; }
+      #primary, #secondary { flex: 1 1 100%; max-width: 100%; }
+      .site-content { padding: 30px 0; }
+    }
+    @media (max-width: 768px) {
+      .container { padding: 0 15px; }
+      .header-logo-row { padding: 12px 0; }
+      .logo img { max-height: 85px; }
+      .nav-menu ul li a { font-size: 0.85rem; padding: 10px 0; }
+      .header-social a { font-size: 1rem; }
+      .image-showcase { height: 120px; }
+      .image-showcase .showcase-item { height: 120px; }
+      .entry-content h1, .entry-content h2 { font-size: 11pt; }
+      .entry-content h5, .entry-content .subtitle { font-size: 9pt; }
+      .entry-content p, .entry-content li { font-size: 9px; }
+      .footer-widgets { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 10px; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 12px; }
+      .header-logo-row { padding: 10px 0; }
+      .logo img { max-height: 70px; }
+      .nav-menu ul li a { font-size: 0.8rem; padding: 8px 0; }
+      .header-social { gap: 8px; }
+      .header-social a { font-size: 0.9rem; }
+      .image-showcase { height: 90px; }
+      .image-showcase .showcase-item { height: 90px; }
+      .entry-content h1, .entry-content h2 { font-size: 10pt; }
+      .entry-content h5, .entry-content .subtitle { font-size: 8pt; }
+      .entry-content p, .entry-content li { font-size: 8.5px; }
+      .entry-content { padding: 15px 18px; }
+      .widget { padding: 15px; }
+      .widget-title { font-size: 1rem; }
+      .site-content { padding: 20px 0; }
+      .footer-widgets { grid-template-columns: 1fr; gap: 15px; }
+      .scroll-top { width: 38px; height: 38px; font-size: 1rem; bottom: 15px; right: 15px; }
+    }
+    @media (max-width: 400px) {
+      .container { padding: 0 8px; }
+      .image-showcase { height: 70px; }
+      .image-showcase .showcase-item { height: 70px; }
+      .entry-content h1, .entry-content h2 { font-size: 9pt; }
+      .entry-content h5, .entry-content .subtitle { font-size: 7pt; }
+      .entry-content p, .entry-content li { font-size: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header class="site-header">
+      <div class="header-logo-row">
+        <div class="container">
+          <div class="logo">
+            <img src="/assets/logo.png" alt="SERVICE CHINE" height="114">
+          </div>
+        </div>
+      </div>
+      <div class="header-nav-row">
+        <div class="container">
+          <div class="nav-menu">
+            <div class="menu-toggle" onclick="document.querySelector('.nav-menu ul').classList.toggle('open')">
+              <i class="fas fa-bars"></i>
+            </div>
+            <ul class="menu">
+              <li><a href="/">ACCUEIL</a></li>
+              <li class="menu-item-has-children">
+                <a href="/fabricationenchine">FABRICATION EN CHINE</a>
+                <ul class="sub-menu"><li><a href="#">Produit</a></li></ul>
+              </li>
+              <li><a href="/acheterenchine">ACHETER EN CHINE</a></li>
+              <li><a href="/exportationenchine">VENDRE EN CHINE</a></li>
+              <li class="menu-item-has-children">
+                <a href="/servicechine">SERVICES</a>
+                <ul class="sub-menu">
+                  <li><a href="/voyagedaffaireenchine">VOYAGE D'AFFAIRES</a></li>
+                  <li><a href="/salondecanton">FOIRE DE CANTON</a></li>
+                  <li><a href="/bureauderepresentationenchine">BUREAU DE REPRESENTATION</a></li>
+                  <li><a href="/interpretefrancaischinoistraduction">INTERPRETE</a></li>
+                </ul>
+              </li>
+              <li><a href="/blog">NEWS</a></li>
+              <li><a href="/contact">CONTACT</a></li>
+            </ul>
+          </div>
+          <div class="header-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-weixin"></i></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="site-content">
+      <div class="container">
+        <div class="page-wrapper">
+          <div id="primary">
+            <main>
+              <article class="page">
+                {isHome && (
+                  <div class="image-showcase">
+                    <div class="showcase-item">
+                      <img src="/assets/cooperation-chine.jpg" alt="Coopération Chine">
+                    </div>
+                    <div class="showcase-item">
+                      <img src="/assets/grossiste-chine.jpg" alt="Grossiste Chine">
+                    </div>
+                    <div class="showcase-item">
+                      <img src="/assets/logistique-chine.jpg" alt="Logistique Chine">
+                    </div>
+                  </div>
+                )}
+                <div class="entry-content">
+                  <slot name="content" />
+                </div>
+              </article>
+            </main>
+          </div>
+          <aside id="secondary">
+            <!-- Recherche 小工具 -->
+            <div class="widget">
+              <h4 class="widget-title">Recherche</h4>
+              <div class="search-form">
+                <input type="text" id="search-input" placeholder="Rechercher…">
+                <button type="button" id="search-button"><i class="fas fa-search"></i></button>
+              </div>
+              <div id="search-results"></div>
+            </div>
+
+            <!-- News 小工具 -->
+            <div class="widget">
+              <h4 class="widget-title">News</h4>
+              <ul>
+                {sidebarPosts.length > 0 ? (
+                  sidebarPosts.map(post => (
+                    <li><a href={post.url}>{post.title}</a></li>
+                  ))
+                ) : (
+                  <li>Aucun article récent</li>
+                )}
+              </ul>
+            </div>
+
+            <!-- À propos 小工具 -->
+            <div class="widget">
+              <h4 class="widget-title">À propos</h4>
+              <p><img src="/assets/Bienvenue-chine-voyage-affaire.jpg" alt="Bienvenue" width="300" height="230"></p>
+              <p>Service d'<a href="#">interprète Chinois Francais</a><br>Service de traduction Francais Chinois<br>Sabrina: responsable interprète</p>
+              <p><img src="/assets/Sabrina-interprete-chinois-francais-commercial-traduction.jpg" alt="Sabrina" width="270" height="272"></p>
+              <p>Service Chine les meilleurs professionnels<br>pour vos <a href="#">voyages d'affaires en Chine</a></p>
+            </div>
+
+            <!-- Liens 友情链接小工具 -->
+            <div class="widget">
+              <h4 class="widget-title">Liens</h4>
+              <ul>
+                <li><a href="https://www.cantonfair.org.cn" target="_blank" rel="noopener">Foire de Canton</a></li>
+                <li><a href="https://www.chine-informations.com" target="_blank" rel="noopener">Chine Informations</a></li>
+                <li><a href="https://www.cci.fr" target="_blank" rel="noopener">CCI France</a></li>
+                <li><a href="https://www.businessfrance.fr" target="_blank" rel="noopener">Business France</a></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-widgets">
+          <div class="footer-widget">
+            <h4 class="widget-title">Links</h4>
+            <ul>
+              <li><a href="/">ACCUEIL</a></li>
+              <li><a href="/fabricationenchine">FABRICATION EN CHINE</a></li>
+              <li><a href="/acheterenchine">ACHETER EN CHINE</a></li>
+              <li><a href="/exportationenchine">VENDRE EN CHINE</a></li>
+              <li><a href="/servicechine">SERVICES</a></li>
+              <li><a href="/blog">NEWS</a></li>
+              <li><a href="/contact">CONTACT</a></li>
+            </ul>
+          </div>
+          <div class="footer-widget">
+            <h4 class="widget-title">Catégories</h4>
+            <ul>
+              <li><a href="/blog/canton">Foire de Canton</a></li>
+              <li><a href="/blog/recent">Mise à jour</a></li>
+              <li><a href="/blog/culture">Culture</a></li>
+            </ul>
+          </div>
+          <div class="footer-widget"><h4 class="widget-title">Contact</h4><p>Unit 903-6A, 33 Ashley Rd, Tsim Sha Tsui, Kowloon<br>HONG KONG</p></div>
+          <div class="footer-widget"><h4 class="widget-title">À propos</h4><p>SERVICE CHINE — Plus de 15 ans d'expérience en Chine, restant à votre disposition afin de faciliter vos démarches d'achats ou de productions en Chine, vous fournit un service professionnel dans le commerce.</p></div>
+        </div>
+        <div class="footer-bottom">
+          <div class="site-info">&copy; 2009 – 2026 SERVICE CHINE. All rights reserved.</div>
+          <!-- ★ 修改：社交图标与导航栏保持一致 ★ -->
+          <div class="footer-social">
+            <span class="single-icon"><a href="#"><i class="fab fa-facebook-f"></i></a></span>
+            <span class="single-icon"><a href="#"><i class="fab fa-twitter"></i></a></span>
+            <span class="single-icon"><a href="#"><i class="fab fa-instagram"></i></a></span>
+            <span class="single-icon"><a href="#"><i class="fab fa-linkedin-in"></i></a></span>
+            <span class="single-icon"><a href="#"><i class="fab fa-youtube"></i></a></span>
+            <span class="single-icon"><a href="#"><i class="fab fa-weixin"></i></a></span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
+
+  <!-- 客户端脚本 -->
+  <script define:vars={{ postsJson }}>
+    const allPosts = JSON.parse(postsJson);
+
+    // 滚动到顶部
+    const btn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 300) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    });
+    btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+    // 移动端菜单
+    document.querySelector('.menu-toggle')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector('.nav-menu ul').classList.toggle('open');
+    });
+
+    // 搜索功能
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+    const resultsContainer = document.getElementById('search-results');
+
+    function renderResults(query) {
+      const trimmed = query.trim();
+      if (!trimmed) {
+        resultsContainer.innerHTML = '';
+        return;
+      }
+      const lowerQuery = trimmed.toLowerCase();
+      const matched = allPosts.filter(post => 
+        post.title.toLowerCase().includes(lowerQuery)
+      );
+      if (matched.length === 0) {
+        resultsContainer.innerHTML = `<p class="search-no-result">Aucun résultat pour "${trimmed}"</p>`;
+        return;
+      }
+      let html = '<ul>';
+      matched.forEach(post => {
+        html += `<li><a href="${post.url}">${post.title}</a></li>`;
+      });
+      html += '</ul>';
+      resultsContainer.innerHTML = html;
+    }
+
+    searchInput.addEventListener('input', function() {
+      renderResults(this.value);
+    });
+    searchButton.addEventListener('click', function() {
+      renderResults(searchInput.value);
+    });
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        renderResults(this.value);
+      }
+    });
+  </script>
+</body>
+</html>

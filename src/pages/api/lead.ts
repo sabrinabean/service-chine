@@ -235,6 +235,11 @@ export const POST: APIRoute = async ({ request }) => {
   const name = String(form.get("name") ?? "").trim();
   const email = String(form.get("email") ?? "").trim();
   const company = String(form.get("company") ?? "").trim();
+  const phone = String(form.get("phone") ?? "").trim();
+  const skype = String(form.get("skype") ?? "").trim();
+  const address = String(form.get("address") ?? "").trim();
+  const country = String(form.get("country") ?? "").trim();
+  const subject = String(form.get("subject") ?? "").trim();
   const message = String(form.get("message") ?? "").trim();
   const turnstileToken = String(form.get("cf-turnstile-response") ?? "");
 
@@ -263,13 +268,18 @@ export const POST: APIRoute = async ({ request }) => {
   const salesTo = env.LEAD_TO ?? env.GMAIL_USER;
 
   // a) 线索邮件 → 销售
-  const leadSubject = `Nouvelle demande de contact — ${name}`;
+  const leadSubject = `Nouvelle demande de contact — ${name}${subject ? " — " + subject : ""}`;
   const leadText = [
     `Nouvelle demande de contact`,
     ``,
     `Nom :      ${name}`,
     `E-mail :   ${email}`,
     `Société :  ${company || "—"}`,
+    `Tél :      ${phone || "—"}`,
+    `Skype :    ${skype || "—"}`,
+    `Adresse :  ${address || "—"}`,
+    `Pays :     ${country || "—"}`,
+    `Sujet :    ${subject || "—"}`,
     ``,
     `Message :`,
     message,
@@ -278,7 +288,12 @@ export const POST: APIRoute = async ({ request }) => {
     <h2>Nouvelle demande de contact</h2>
     <p><strong>Nom :</strong> ${escapeHtml(name)}<br/>
        <strong>E-mail :</strong> ${escapeHtml(email)}<br/>
-       <strong>Société :</strong> ${escapeHtml(company || "—")}</p>
+       <strong>Société :</strong> ${escapeHtml(company || "—")}<br/>
+       <strong>Tél :</strong> ${escapeHtml(phone || "—")}<br/>
+       <strong>Skype :</strong> ${escapeHtml(skype || "—")}<br/>
+       <strong>Adresse :</strong> ${escapeHtml(address || "—")}<br/>
+       <strong>Pays :</strong> ${escapeHtml(country || "—")}<br/>
+       <strong>Sujet :</strong> ${escapeHtml(subject || "—")}</p>
     <h3>Message</h3>
     <p>${escapeHtml(message).replace(/\n/g, "<br/>")}</p>`;
 

@@ -1,0 +1,27 @@
+---
+// 服务端搜索页(辅助)。现场主要的搜索是 BaseLayout 内基于 postsJson 的客户端搜索。
+// 注:原 Astro.glob 在 Astro 6 已移除,改用 getCollection('blog')。
+import { getCollection } from 'astro:content';
+const query = Astro.url.searchParams.get('q') || '';
+let results: { url: string; title: string }[] = [];
+if (query.trim()) {
+  const q = query.toLowerCase();
+  const all = await getCollection('blog');
+  results = all
+    .filter(
+      (entry) =>
+        entry.data.title.toLowerCase().includes(q) ||
+        (entry.data.description ?? '').toLowerCase().includes(q) ||
+        (entry.body ?? '').toLowerCase().includes(q),
+    )
+    .map((entry) => ({ url: `/blog/${entry.id}`, title: entry.data.title }));
+}
+---
+<html lang="fr">
+  <body>
+    <h1>Résultats pour : {query}</h1>
+    <ul>
+      {results.map((post) => <li><a href={post.url}>{post.title}</a></li>)}
+    </ul>
+  </body>
+</html>

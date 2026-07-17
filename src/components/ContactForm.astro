@@ -1,0 +1,42 @@
+---
+// 9 字段联系表单(法语)— POST 到 /api/lead,经 Gmail SMTP 发线索邮件 + 客户确认信,
+// 成功后 303 跳 /merci。字段名与 src/pages/api/lead.ts 对齐。
+// 两处复用:首页 index.astro、联系页 contact.astro。
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
+---
+<div style="display:inline-block; width:70%; text-align:left;">
+  <div class="gyan-cf7-style-box">
+    <form class="wpcf7-form" action="/api/lead" method="POST">
+      <p style="text-align:left;"><label>Votre nom et prénom<br/><input type="text" name="name" required style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
+      <p style="text-align:left;"><label>Société<br/><input type="text" name="company" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
+      <p style="text-align:left;"><label>E-mail<br/><input type="email" name="email" required style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
+      <p style="text-align:left;"><label>Mobile / tél fixe<br/><input type="tel" name="phone" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
+      <p style="text-align:left;"><label>Skype<br/><input type="text" name="skype" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
+      <p style="text-align:left;"><label>Votre adresse<br/><input type="text" name="address" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
+      <p style="text-align:left;"><label>Pays<br/><input type="text" name="country" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
+      <p style="text-align:left;"><label>Sujet<br/><input type="text" name="subject" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
+      <p style="text-align:left;"><label>Message<br/><textarea name="message" rows="12" required minlength="10" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; resize:vertical; box-sizing:border-box;"></textarea></label></p>
+
+      {/* 蜜罐:机器人会填隐藏字段,命中即由后端静默丢弃(伪装成功) */}
+      <div style="position:absolute; left:-9999px; top:-9999px;" aria-hidden="true">
+        <label>Ne pas remplir ce champ<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      {/* Cloudflare Turnstile(仅当构建时注入了 site key 才渲染)*/}
+      {turnstileSiteKey && (
+        <div style="text-align:center; margin:10px 0;">
+          <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light" style="display:inline-block;"></div>
+        </div>
+      )}
+
+      <!-- 按钮居中 -->
+      <p style="text-align:center;">
+        <input type="submit" value="Envoyer" style="padding:9px 24px; font-size:15px; background:#DC214C; color:#fff; border:none; border-radius:6px; cursor:pointer; width:auto;">
+      </p>
+    </form>
+  </div>
+</div>
+
+{turnstileSiteKey && (
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+)}
