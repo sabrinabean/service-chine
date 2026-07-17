@@ -2,8 +2,9 @@ backend:
   name: github
   repo: sabrinabean/service-chine
   branch: main
-  base_url: https://service-chine.sabrinabin-fr.workers.dev
-  auth_endpoint: /api/auth
+  # 💡 下面这行是最关键的，必须改成你现在可用的 proxy Workers 地址
+  base_url: https://decap-proxy.sabrinabin-fr.workers.dev
+  auth_endpoint: /auth
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
