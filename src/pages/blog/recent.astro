@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const recentPosts = (await getCollection("blog"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<BaseLayout title="Dernières mises à jour - Service Chine">
+  <div slot="content">
+    <h1 style="font-size:20px; text-align:center; margin-bottom:0.75em; font-weight:600; color:#DC0000;">
+      Dernières mises à jour
+    </h1>
+    <p style="margin-bottom:20px; text-align:center; font-size:12pt;">
+      Les 3 articles les plus récents.
+    </p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:30px;">
+      {
+        recentPosts.map((post) => (
+          <div style="background:#f9f9f9; padding:20px; border-radius:6px;">
+            <h3>
+              <a href={`/blog/${post.id}`} style="color:#DC214C; text-decoration:none; font-size:15px;">
+                {post.data.title}
+              </a>
+            </h3>
+            <p style="color:#888; font-size:0.9rem;">{formatDate(post.data.pubDate)}</p>
+            <p style="display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; text-overflow:ellipsis; line-height:1.5; max-height:4.5em;">
+              {post.data.description}
+            </p>
+            <a href={`/blog/${post.id}`} style="color:#DC214C; text-decoration:none; font-weight:500; font-size:15px;">
+              Lire la suite →
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  a { color: #DC214C !important; text-decoration: none !important; border-bottom: none !important; font-size: 15px !important; }
+  a:hover { color: #b01a3a !important; }
+</style>

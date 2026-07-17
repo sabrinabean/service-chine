@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<BaseLayout title="Blog - Service Chine">
+  <div slot="content">
+    <h1 style="font-size:20px; text-align:center; margin-bottom:0.75em; font-weight:600; color:#DC0000;">
+      Les Actualités
+    </h1>
+    <p style="margin-bottom:20px; text-align:center; font-size:12pt;">
+      Le blog du commerce entre la Chine et les pays francophones — vu par une Chinoise et un Français.
+    </p>
+
+    <div id="posts-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:30px;">
+      {
+        posts.map((post, index) => (
+          <div
+            class="post-card"
+            data-index={index}
+            style="background:#f9f9f9; padding:20px; border-radius:6px;"
+          >
+            <h3>
+              <a href={`/blog/${post.id}`} style="color:#DC214C; text-decoration:none; font-size:15px;">
+                {post.data.title}
+              </a>
+            </h3>
+            <p style="color:#888; font-size:0.9rem;">{formatDate(post.data.pubDate)}</p>
+            <p style="display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; text-overflow:ellipsis; line-height:1.5; max-height:4.5em;">
+              {post.data.description}
+            </p>
+            <a href={`/blog/${post.id}`} style="color:#DC214C; text-decoration:none; font-weight:500; font-size:15px;">
+              Lire la suite →
+            </a>
+          </div>
+        ))
+      }
+    </div>
+
+    <div id="pagination" style="margin-top:40px; text-align:center; display:flex; justify-content:center; gap:8px; flex-wrap:wrap;"></div>
+  </div>
+</BaseLayout>
+
+<style>
+  a { color: #DC214C !important; text-decoration: none !important; border-bottom: none !important; font-size: 15px !important; }
+  a:hover { color: #b01a3a !important; }
+  .page-btn { background: #f0f0f0; border: 1px solid #ddd; padding: 8px 14px; border-radius: 4px; cursor: pointer; font-size: 14px; transition: background 0.2s; }
+  .page-btn:hover { background: #e0e0e0; }
+  .page-btn.active { background: #DC214C; color: white; border-color: #DC214C; }
+  .page-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('posts-grid');
+    const pagination = document.getElementById('pagination');
+    if (!grid || !pagination) return;
+    const cards = grid.querySelectorAll('.post-card');
+    const totalPosts = cards.length;
+    const pageSize = 10;
+    const totalPages = Math.ceil(totalPosts / pageSize);
+    let currentPage = 1;
+    if (totalPages <= 1) return;
+
+    function showPage(page) {
+      const start = (page - 1) * pageSize;
+      const end = start + pageSize;
+      cards.forEach((card, index) => {
+        card.style.display = (index >= start && index < end) ? '' : 'none';
+      });
+      document.querySelectorAll('.page-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.page) === page);
+      });
+      currentPage = page;
+    }
+
+    function renderPagination() {
+      let html = '';
+      html += `<button class="page-btn" data-page="prev" ${currentPage === 1 ? 'disabled' : ''}>‹</button>`;
+      for (let i = 1; i <= totalPages; i++) {
+        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+      }
+      html += `<button class="page-btn" data-page="next" ${currentPage === totalPages ? 'disabled' : ''}>›</button>`;
+      pagination.innerHTML = html;
+      pagination.querySelectorAll('.page-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.disabled) return;
+          const page = btn.dataset.page;
+          let newPage = currentPage;
+          if (page === 'prev') newPage = Math.max(1, currentPage - 1);
+          else if (page === 'next') newPage = Math.min(totalPages, currentPage + 1);
+          else newPage = parseInt(page);
+          if (newPage !== currentPage) {
+            showPage(newPage);
+            renderPagination();
+          }
+        });
+      });
+    }
+
+    showPage(1);
+    renderPagination();
+  });
+</script>

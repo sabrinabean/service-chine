@@ -1,65 +1,58 @@
 ---
-import { type CollectionEntry, getCollection, render } from "astro:content";
-import BlogPost from "../../layouts/BlogPost.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-
   return posts.map((post) => ({
     params: { slug: post.id },
-    props: post,
+    props: { post },
   }));
 }
 
-type Props = CollectionEntry<"blog">;
-
-const post = Astro.props;
+const { post } = Astro.props;
 const { Content } = await render(post);
 
-const relatedPosts = (await getCollection("blog"))
-  .filter((p) => p.id !== post.id)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
-
-const site = Astro.site?.toString() ?? "";
-const url = `${site}blog/${post.id}/`;
-
-const image = post.data.thumbnail
-  ? new URL(post.data.thumbnail, Astro.site).toString()
-  : "";
+const formattedDate = post.data.pubDate.toLocaleDateString("fr-FR", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "${post.data.title}",
-  "description": "${post.data.description}",
-  "image": "${image}",
-  "datePublished": "${post.data.pubDate.toISOString()}",
-  ${post.data.updatedDate ? `"dateModified": "${post.data.updatedDate.toISOString()}",` : ""}
-  "author": {
-    "@type": "Person",
-    "name": "${post.data.author?.name ?? "ProCleaning"}"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "ProCleaning"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "${url}"
-  }
-}
-</script>
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <div slot="content">
 
-<BlogPost
-  {...post.data}
-  relatedPosts={relatedPosts}
-  breadcrumbParent="Blog"
-  title={post.data.title}
-  description={post.data.description}
-  image={post.data.thumbnail}
->
-  <Content />
-</BlogPost>
+    <!-- 主标题 -->
+    <h1 style="font-size:20px; text-align:center; margin-bottom:0.5em; font-weight:600; color:#DC0000;">
+      {post.data.title}
+    </h1>
+
+    <!-- 日期 -->
+    <p style="color:#888; font-size:0.9rem; text-align:center; margin-bottom:1.5em;">
+      Publié le {formattedDate}
+    </p>
+
+    <!-- 正文 -->
+    <div style="font-size:15px; line-height:1.8;">
+      <Content />
+    </div>
+
+    <!-- 返回链接 -->
+    <div style="margin-top:2.5em; text-align:center; font-size:11pt;">
+      <a href="/blog" style="color:#DC214C; text-decoration:none;">← Retour au blog</a>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<style>
+  a {
+    color: #DC214C !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
+  }
+  a:hover {
+    color: #b01a3a !important;
+  }
+</style>
