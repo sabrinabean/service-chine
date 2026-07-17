@@ -11,9 +11,8 @@ author:
   slug: Service Chine
   name: Service Chine
 ---
-À partir du cinquième jour du cinquième mois lunaire, les membres de divers groupes ethniques en Chine et dans le monde célèbrent le festival du Bateau Dragon. Cette fête ancestrale propose des courses de bateaux-dragons, de délicieuses spécialités festives ainsi que des rituels traditionnels. Datant de plus de mille ans, il rend hommage au poète patriote Qu Yuan. 
 
-![](../../assets/news/bateau-dragon.jpg)
+À partir du cinquième jour du cinquième mois lunaire, les membres de divers groupes ethniques en Chine et dans le monde célèbrent le festival du Bateau Dragon. Cette fête ancestrale propose des courses de bateaux-dragons, de délicieuses spécialités festives ainsi que des rituels traditionnels. Datant de plus de mille ans, il rend hommage au poète patriote Qu Yuan. 
 
 Si les festivités varient d’une région à l’autre, elles n’en présentent pas moins des points communs. Parallèlement à une cérémonie commémorative destinée à offrir des sacrifices à un héros local, sont organisés des événements sportifs, tels que régates de bateaux-dragons, circuits en bateaux-dragons, et tir sur cibles constituées de branches de saule ; des repas de boulettes de riz, d’œufs et de vin rouge soufré ; et des divertissements folkloriques avec pièces d’opéra, chants et danses de la licorne, etc.
 
