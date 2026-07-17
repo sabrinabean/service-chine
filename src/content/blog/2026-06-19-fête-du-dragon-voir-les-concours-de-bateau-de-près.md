@@ -6,7 +6,7 @@ description: La Fête des bateaux-dragons (ou Duanwu) est une célébration
   spectaculaires de bateaux ornés de têtes de dragons et la dégustation de
   zongzi (boulettes de riz gluant)
 pubDate: 2026-06-19
-thumbnail: src/content/blog/bateau-dragon.jpg
+thumbnail: ""
 category: culture
 author:
   slug: Service Chine
