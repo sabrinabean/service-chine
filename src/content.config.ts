@@ -38,42 +38,7 @@ const categories = defineCollection({
     }),
 });
 
-const service = defineCollection({
-  loader: glob({
-    base: './src/content/service',
-    pattern: '**/*.{md,mdx}',
-  }),
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      description: z.string(),
-      thumbnail: image().optional(),
-      pubDate: z.coerce.date(),
-      updatedDate: z.coerce.date().optional(),
-      featured: z.boolean().default(false),
-    }),
-});
-
-const team = defineCollection({
-  loader: glob({
-    base: './src/content/team',
-    pattern: '**/*.{md,mdx}',
-  }),
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      description: z.string(),
-      thumbnail: image().optional(),
-      pubDate: z.coerce.date(),
-      updatedDate: z.coerce.date().optional(),
-      featured: z.boolean().default(false),
-      rating: z.number().default(5)
-    }),
-});
-
 export const collections = {
   blog,
   categories,
-  service,
-  team
 };
