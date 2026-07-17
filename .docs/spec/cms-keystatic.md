@@ -199,4 +199,4 @@ export default config({
 2. 选 `Articles`/`Services`/`Catégories` → 新建或编辑。
 3. 填法语标题/描述/正文,选 `Catégorie`,设 `Date de publication`。
 4. 保存 → Keystatic 直推 `main` → Cloudflare 自动重建 → 约 30s–2min 上线。
-5. 回滚:任一条目都是一次 commit,可在 GitHub 界面 `Revert`.
+5. 回滚:任一条目都是一次 commit,可在 GitHub 界面 `Revert`。
