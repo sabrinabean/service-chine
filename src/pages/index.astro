@@ -1,13 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
 const title = "Export-Import Chine, 5 bonnes raisons de choisir - SERVICE CHINE";
 const description = "SERVICE-CHINE: Import-Export Chine, les 5 bonnes raisons d'importer de Chine ou d'exporter en Chine avec notre expetise et nos conseils";
 ---
 
 <BaseLayout title={title} description={description}>
   <div slot="content">
-    <h1>Importer de Chine, trouvez votre fabricant, votre grossiste Chinois<br/>Exporter en Chine, vous implanter sur le marché Chinois avec les bons partenaires</h1>
-    <h2 style="font-size:2rem; margin-top:20px;">Import-export avec la Chine: 5 bonnes raisons de choisir SERVICE-CHINE</h2>
+    <!-- 主标题：13pt，居中 -->
+    <h1 style="font-size:13pt; text-align:center; margin-bottom:0.75em; font-weight:600;">
+      Importer de Chine, trouvez votre fabricant, votre grossiste Chinois<br/>
+      Exporter en Chine, vous implanter sur le marché Chinois avec les bons partenaires
+    </h1>
+
+    <!-- 副标题：12pt，居中，颜色#DC0000 -->
+    <h2 style="font-size:12pt; text-align:center; color:#DC0000; margin-top:0.75em; margin-bottom:1em; font-weight:600;">
+      Import-export avec la Chine: 5 bonnes raisons de choisir SERVICE-CHINE
+    </h2>
 
     <ol>
       <li><a href="#culture">Un service basé sur notre culture d'entreprise Occidentale et Chinoise façonnée par plus de 15 ans d'expérience</a></li>
@@ -19,7 +28,7 @@ const description = "SERVICE-CHINE: Import-Export Chine, les 5 bonnes raisons d'
 
     <h5 id="culture">1) Un service basé sur notre culture d'entreprise Occidentale et Chinoise façonnée par 15 ans d'expérience</h5>
     <p>Trouvez votre fabricant ou votre fournisseur chinois, trouvez vos partenaires ou clients chinois avec l'accompagnement d'une équipe basée en Chine qui comprend bien vos demandes mais aussi la façon de travailler, de faire du business en Chine.<br/>SERVICE-CHINE est une société implantée dans le Guangdong à Hong-Kong et à Canton (Guangzhou). Dirigée par un Luxembourgeois, un Français et 6 collaborateurs chinois dont 2 traductrices (français/anglais/chinois), SERVICE-CHINE possède un réseau de connaissances qui s'étend à travers toute l'Asie.<br/>SERVICE CHINE c'est une équipe d'ingénieurs, de négociateurs, d'acheteurs, de contrôleurs qualité, de traducteurs Chinois-Français-Anglais et d'accompagnateurs-interprètes. Ces collaborateurs viendront mettre à votre service leurs connaissances et leur capacité d'analyse selon vos besoins pour <a href="/exportationenchine">exporter en Chine</a> ou pour <a href="/acheterenchine">importer de Chine</a>.</p>
-    <div class="elementor-image"><img src="/assets/import-export-chine.jpg" alt="import-export-chine" width="448" height="299"></div>
+    <div class="elementor-image"><img src="/assets/import-export-chine.jpg" alt="import-export-chine" style="width:80%; height:auto; display:block;"></div>
 
     <h5 id="temps">2) Avec nos services, gagnez du temps et de l'argent</h5>
     <p>SERVICE-CHINE, votre partenaire, vous permet de continuer à vous consacrer à votre cœur de métier en toute sérénité.<br/>S'implanter en Chine peut être long et coûteux. Nous avons 15 ans d'expérience dans le domaine de l'export-import en Chine. Nous pouvons être votre relais pour vos <a href="/acheterenchine">achats en Chine</a>, nous pouvons également devenir votre bureau de représentation en Chine.<br/>La Chine possède un fabuleux potentiel de croissance, un fabuleux potentiel d'achat qui va s'accroitre dans la prochaine décennie. Vous vous interrogez sur la façon d'être présent sur ce marché. SERVICE-CHINE peut étudier votre projet, vous conseiller sur la bonne stratégie d'implantation, vous accompagner dans votre développement sur le marché Chinois.</p>
@@ -29,7 +38,9 @@ const description = "SERVICE-CHINE: Import-Export Chine, les 5 bonnes raisons d'
       <div class="col">
         <p>Il n'est pas une semaine sans que nous recevions des mails d'entreprises qui nous expliquent leurs déboires sur les produits reçus d'un <a href="/fabricationenchine">fabricant Chinois</a>, d'un fournisseur Chinois contactés par l'intermédiaire d'Alibaba, de GlobalMarket ou autres réseaux.<br/>Il n'est pas une semaine sans que nous entendions parler de problèmes industriels, d'entrepreneurs qui ont perdu temps et argent à vouloir s'implanter en Chine sans expérience, sans véritable connaissance du pays et des us et coutumes locales.<br/>SERVICE-CHINE vous conseille les bonnes stratégies d'achat ou d'implantation en Chine.</p>
       </div>
-      <div class="col"><img src="/assets/service-chine-laura.jpg" alt="service-chine-laura" width="444" height="336"></div>
+      <div class="col">
+        <img src="/assets/Service-Chine-OEM.jpg" alt="Service-Chine-OEM" style="width:80%; height:auto; display:block;">
+      </div>
     </div>
 
     <h5 id="processus">4) La maitrise des processus export-import en Chine</h5>
@@ -37,7 +48,7 @@ const description = "SERVICE-CHINE: Import-Export Chine, les 5 bonnes raisons d'
       <div class="col">
         <p>Savoir faire du Sourcing en Chine ou savoir importer ou exporter en Chine c'est bien comprendre tous les processus de la chaine d'approvisionnement entre les deux pays concernés.<br/>Ne pas maitriser ces processus peut devenir un véritable gouffre financier pour votre entreprise. SERVICE-CHINE, de part son expérience, est à même de vous aider efficacement dans ces démarches.</p>
       </div>
-      <div class="col"><img src="/assets/foire-de-canton.jpg" alt="foire-de-canton" width="450" height="268"></div>
+      <div class="col"><img src="/assets/foire-de-canton.jpg" alt="foire-de-canton" style="width:80%; height:auto; display:block;"></div>
     </div>
 
     <h5 id="yeux">5) SERVICE-CHINE: vos yeux et vos oreilles en Chine</h5>
@@ -45,7 +56,7 @@ const description = "SERVICE-CHINE: Import-Export Chine, les 5 bonnes raisons d'
       <div class="col">
         <p>L'étude de vos besoins, le conseil adapté, l'audit sur place, le suivi, le contrôle qualité, le marketing, sont les clés de votre succès.<br/>Si vous le souhaitez, SERVICE-CHINE pourra être présent avec des services « à la carte » ou dans toutes les étapes de votre développement en Chine :<br/>– <a href="/fabricationenchine">Fabriquer en Chine</a>: les clés du succès<br/>– <a href="/acheterenchine">Acheter en Chine</a>: trouver votre fournisseur ou votre grossiste Chinois<br/>– <a href="/exportationenchine">Exporter en Chine</a> et en Asie: un marché en pleine croissance, un fabuleux potentiel.</p>
       </div>
-      <div class="col"><img src="/assets/Service-Chine-Antoine.jpg" alt="Service-Chine-Antoine" width="399" height="336"></div>
+      <div class="col"><img src="/assets/139-salon-canton-chine.JPG" alt="139-salon-canton-chine" style="width:80%; height:auto; display:block;"></div>
     </div>
 
     <h5>SERVICE-CHINE ce sont aussi des services personnalisés</h5>
@@ -53,42 +64,128 @@ const description = "SERVICE-CHINE: Import-Export Chine, les 5 bonnes raisons d'
       <div class="col">
         <p><a href="/servicechine">Service en Chine à la carte</a> <br/>– Votre <a href="/bureauderepresentationenchine">bureau de représentation en Chine</a><br/>– <a href="/voyagedaffaireenchine">Voyage d'affaire en Chine, préparation</a>, accompagnement<br/>– <a href="/interpretefrancaischinoistraduction">Traduction Chinois-Français-Anglais</a><br/>– <a href="/interpretefrancaischinoistraduction">Mettre à votre disposition une Interprète</a><br/>– <a href="/salondecanton">Visite de la foire de Canton</a> (Salon de Canton)<br/>– Visite de la foire de Hong-Kong<br/>– Visite de salons spécialisés en Chine<br/>– Organisation de séminaires et congrès en Chine<br/>– Evènementiel en Chine</p>
       </div>
-      <div class="col"><img src="/assets/Hong-Kong-service-chine.jpg" alt="Hong-Kong-service-chine" width="448" height="311"></div>
+      <!-- ★★★ 最后两张图片容器（独立于普通图片规则） ★★★ -->
+      <div style="display:flex; gap:10px; align-items:stretch; flex-wrap:wrap; max-width:100%;">
+        <div style="flex:0 1 auto; min-width:120px; max-width:70%; display:flex; align-items:stretch;">
+          <img src="/assets/Hong-Kong-service-chine.jpg" alt="Hong-Kong-service-chine" style="width:auto; height:100%; max-width:100%; object-fit:contain; display:block;">
+        </div>
+        <div style="flex:0 1 auto; min-width:120px; max-width:30%; display:flex; align-items:stretch;">
+          <img src="/assets/service-chine-canton-guangzhou.jpg" alt="service-chine-canton-guangzhou" style="width:30%; height:auto; max-width:30%; object-fit:contain; display:block;">
+        </div>
+      </div>
     </div>
 
-    <h3 style="margin-top:30px; font-size:1.8rem;">Importer de Chine, trouvez votre fabricant, votre grossiste Chinois<br/>Exporter en Chine, trouvez les bons partenaires Chinois<br/>Consultez-nous !</h3>
+    <!-- ===== 表单部分 ===== -->
+    <h3 style="text-align:center; font-size:14pt; margin-top:30px;">
+      Importer de Chine, trouvez votre fabricant, votre grossiste Chinois<br/>
+      Exporter en Chine, trouvez les bons partenaires Chinois<br/>
+      Consultez-nous !
+    </h3>
 
-    <div class="flex-row" style="margin-top:30px; background:#f5f5f5; padding:20px; border-radius:6px;">
-      <div class="col">
-        <img src="/assets/service-chine-contact-newsletter.jpg" alt="SERVICE CHINE CONTACT US" width="379" height="228">
-        <p style="text-align:center; margin-top:10px;"><strong>Gratuit !</strong> Cliquez sur l'icône « Call me! » skype<br/><a href="skype:sabrinabean1005?chat"><img src="/assets/call_green_white_153x63.png" alt="skype" width="153" height="63"></a></p>
+    <!-- 背景块 -->
+    <div style="margin-top:30px; background:#f5f5f5; padding:20px; border-radius:6px; text-align:center;">
+      <!-- 图片部分 -->
+      <div style="margin-bottom:20px;">
+        <img src="/assets/service-chine-contact-newsletter.jpg" alt="SERVICE CHINE CONTACT US" width="379" height="228" style="max-width:100%; height:auto; display:block;">
+        <p style="margin-top:10px;"><strong>Gratuit !</strong> Cliquez sur l'icône « Call me! » skype<br/>
+          <a href="skype:sabrinabean1005?chat"><img src="/assets/call_green_white_153x63.png" alt="skype" width="153" height="63"></a>
+        </p>
         <p>Unit 903-6A, 9/., 33 Ashley Rd, Tsim Sha Tsui, Kowloon<br>HONG KONG</p>
-        <div class="elementor-social-icons-wrapper">
+        <!-- ===== 分享图标 ===== -->
+        <div class="elementor-social-icons-wrapper" style="justify-content:center;">
           <a class="elementor-icon" href="#"><i class="fab fa-facebook-f"></i></a>
           <a class="elementor-icon" href="#"><i class="fab fa-twitter"></i></a>
-          <a class="elementor-icon" href="#"><i class="fab fa-google-plus-g"></i></a>
-          <a class="elementor-icon" href="#"><i class="fab fa-pinterest"></i></a>
-          <a class="elementor-icon" href="#"><i class="fas fa-envelope"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-youtube"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-weixin"></i></a>
         </div>
       </div>
-      <div class="col">
-        <div class="gyan-cf7-style-box">
-          <form class="wpcf7-form">
-            <p><label>Votre nom et prénom<br/><input type="text" name="your-name"></label></p>
-            <p><label>Société<br/><input type="text" name="your-company"></label></p>
-            <p><label>E-mail<br/><input type="email" name="your-email"></label></p>
-            <p><label>Mobile / tél fixe<br/><input type="tel" name="your-phone"></label></p>
-            <p><label>Skype<br/><input type="text" name="your-skype"></label></p>
-            <p><label>Votre adresse<br/><input type="text" name="your-add"></label></p>
-            <p><label>Pays<br/><input type="text" name="your-country"></label></p>
-            <p><label>Sujet<br/><input type="text" name="your-subject"></label></p>
-            <p><label>Message<br/><textarea name="your-message" rows="8"></textarea></label></p>
-            <p><input type="submit" value="Envoyer"></p>
-          </form>
-        </div>
-      </div>
-    </div>
 
-    <div style="margin-top:30px;"><img src="/assets/Salon-de-Canton-2011.png" alt="Salon-de-Canton-2011" width="640" height="272"></div>
+      <!-- 表单块 -->
+      <ContactForm />
+    </div>
+    <!-- ===== 表单结束 ===== -->
+
+    <div style="margin-top:30px;"><img src="/assets/Salon-de-Canton-2011.png" alt="Salon-de-Canton-2011" style="max-width:100%; height:auto; display:block;"></div>
   </div>
 </BaseLayout>
+
+<!-- 超链接样式 + 修正后的图片响应式控制 -->
+<style>
+  a {
+    color: #DC214C !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
+  }
+  a:hover {
+    color: #b01a3a !important;
+  }
+
+  /* ===== 图片响应式规则 ===== */
+  /* PC端（≥992px） */
+  @media (min-width: 992px) {
+    /* 1. 所有普通图片（排除特殊图片和最后两张容器内的图片）缩小20%并居中 */
+    .entry-content img:not([src*="service-chine-contact-newsletter"]):not([src*="Salon-de-Canton-2011"]):not(.flex-row img):not(div[style*="display:flex"] img) {
+      width: 80% !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      display: block !important;
+      height: auto !important;
+    }
+
+    /* 2. contact-newsletter 保持原尺寸，居中 */
+    .entry-content img[src*="service-chine-contact-newsletter"] {
+      width: auto !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      display: block !important;
+    }
+
+    /* 3. Salon 图片保持100%宽度 */
+    .entry-content img[src*="Salon-de-Canton-2011"] {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      display: block !important;
+    }
+
+    /* 4. 最后两张图片容器：并排各占一半（按比例自适应），等高 */
+    .entry-content > div[style*="display:flex"] > div {
+      flex: 0 1 calc(50% - 5px) !important;
+      max-width: calc(50% - 5px) !important;
+    }
+    .entry-content > div[style*="display:flex"] img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+    }
+  }
+
+  /* 手机端（≤991px） */
+  @media (max-width: 991px) {
+    /* 所有图片宽度100%，高度自动 */
+    .entry-content img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: none !important;
+      margin: 0 auto !important;
+      display: block !important;
+    }
+
+    /* 最后两张图片容器：纵向排列，每张占一行 */
+    .entry-content > div[style*="display:flex"] {
+      flex-direction: column !important;
+    }
+    .entry-content > div[style*="display:flex"] > div {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+    }
+    .entry-content > div[style*="display:flex"] img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: none !important;
+    }
+  }
+</style>
