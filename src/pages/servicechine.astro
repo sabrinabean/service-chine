@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
 const title = "SERVICE-CHINE: faire du business en Chine avec nos services à la carte - SERVICE CHINE";
 const description = "SERVICE-CHINE: une équipe franco-chinoise. Avec nos services à la carte vous pourrez faire du business en Chine ou trouver vos fournisseurs chinois.";
 ---
@@ -81,25 +82,7 @@ const description = "SERVICE-CHINE: une équipe franco-chinoise. Avec nos servic
       </div>
 
       <!-- 表单块：使用 inline-block 居中，宽度 70%，输入框100%撑满 -->
-      <div style="display:inline-block; width:70%; text-align:left;">
-        <div class="gyan-cf7-style-box">
-          <form class="wpcf7-form">
-            <p style="text-align:left;"><label>Votre nom et prénom<br/><input type="text" name="your-name" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
-            <p style="text-align:left;"><label>Société<br/><input type="text" name="your-company" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
-            <p style="text-align:left;"><label>E-mail<br/><input type="email" name="your-email" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
-            <p style="text-align:left;"><label>Mobile / tél fixe<br/><input type="tel" name="your-phone" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
-            <p style="text-align:left;"><label>Skype<br/><input type="text" name="your-skype" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
-            <p style="text-align:left;"><label>Votre adresse<br/><input type="text" name="your-add" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
-            <p style="text-align:left;"><label>Pays<br/><input type="text" name="your-country" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
-            <p style="text-align:left;"><label>Sujet<br/><input type="text" name="your-subject" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></label></p>
-            <p style="text-align:left;"><label>Message<br/><textarea name="your-message" rows="12" style="width:100%; padding:9px 15px; font-size:13px; border-radius:6px; border:1px solid #ccc; resize:vertical; box-sizing:border-box;"></textarea></label></p>
-            <!-- 按钮居中 -->
-            <p style="text-align:center;">
-              <input type="submit" value="Envoyer" style="padding:9px 24px; font-size:15px; background:#DC214C; color:#fff; border:none; border-radius:6px; cursor:pointer; width:auto;">
-            </p>
-          </form>
-        </div>
-      </div>
+      <ContactForm />
     </div>
     <!-- 表单结束 -->
 
