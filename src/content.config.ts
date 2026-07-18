@@ -14,7 +14,6 @@ const blog = defineCollection({
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
       thumbnail: image().optional(),
-      // category 改为引用独立 categories collection 的 slug
       category: z.string(),
       author: z.object({
         slug: z.string(),
@@ -23,7 +22,6 @@ const blog = defineCollection({
     }),
 });
 
-// 独立 categories collection(本方案新增,可集中管理/排序分类)
 const categories = defineCollection({
   loader: glob({
     base: './src/content/categories',
@@ -38,7 +36,22 @@ const categories = defineCollection({
     }),
 });
 
+// ====== 新增 pages 集合 ======
+const pages = defineCollection({
+  loader: glob({
+    base: './src/content/pages',
+    pattern: '**/*.{md,mdx}',
+  }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    path: z.string().optional(), // 支持自定义路径
+    date: z.date().optional(),
+  }),
+});
+
 export const collections = {
   blog,
   categories,
+  pages,  // ← 别忘了加这一行
 };
