@@ -6,7 +6,10 @@ import ContactForm from '../components/ContactForm.astro';
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
   return pages.map(page => {
-    const slug = page.data.path ? page.data.path.replace(/^\//, '') : page.id;
+    // 优先使用 frontmatter 中的 path，否则使用文件名（去掉 .md 扩展名）
+    const slug = page.data.path 
+      ? page.data.path.replace(/^\//, '') 
+      : page.id.replace(/\.md$/, '');
     return { params: { slug: slug || 'home' }, props: { page } };
   });
 }
