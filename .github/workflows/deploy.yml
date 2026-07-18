@@ -31,13 +31,6 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: proxy
           command: deploy
-          # Secrets for proxy workers are set in Cloudflare Dashboard
-          secrets: |
-            GITHUB_OAUTH_ID
-            GITHUB_OAUTH_SECRET
-        env:
-          GITHUB_OAUTH_ID: ${{ secrets.OAUTH_CLIENT_ID }}
-          GITHUB_OAUTH_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
 
   deploy-site:
     needs: deploy-proxy
