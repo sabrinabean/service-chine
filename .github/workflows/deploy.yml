@@ -40,19 +40,24 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '22.12.0'
+          node-version: '22'           # 使用 Node 22（满足 Astro 要求）
           cache: 'npm'
 
       - run: npm ci
+
+      # ====== 关键修复：升级 esbuild 解决 Node 22 兼容性 ======
+      - name: Upgrade esbuild
+        run: npm install esbuild@latest
 
       - name: Build (Astro + Cloudflare adapter)
         env:
           PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.PUBLIC_TURNSTILE_SITE_KEY }}
         run: npm run build
 
+      # ====== 部署时显式指定静态资源目录 ======
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --compatibility-flag nodejs_compat
+          command: deploy --assets dist --compatibility-flag nodejs_compat
