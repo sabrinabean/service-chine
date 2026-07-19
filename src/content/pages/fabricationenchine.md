@@ -1,7 +1,7 @@
 ---
 title: Fabrication en Chine
 date: 2026-07-17
-path: https://service-chine.sabrinabin-fr.workers.dev/fabricationenchine
+path: /fabricationenchine
 ---
 # Fabriquer en Chine, toutes les étapes du processus avec SERVICE-CHINE
 
