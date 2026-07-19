@@ -23,24 +23,29 @@ const description = "Vous voulez vendre ou acheter en Chine, SERVICE-CHINE, votr
       2) <a href="#representation-en-chine-creation">Service Chine peut avec ses partenaires juridiques vous aider dans la création d'un bureau de représentation (RO)</a></p>
     </div>
 
-    <div class="elementor-image"><img src="/assets/bureau-representation-service-chine.jpeg" alt="bureau-representation-service-chine" width="640" height="272"></div>
+    <!-- 1) 替换为 bureau-de-representation.jpg，宽度80%，左对齐 -->
+    <div class="elementor-image">
+      <img src="/assets/bureau-de-representation.jpg" alt="bureau-de-representation" style="width:80%; display:block;">
+    </div>
 
     <h5 id="representation-en-chine-creation">1) SERVICE-CHINE peut vous représenter en Chine, une solution de démarrage</h5>
     <p>Dans un premier temps il n'est pas forcément nécessaire d'ouvrir un bureau de représentation en Chine et Service-Chine peut s'occuper de vous représenter. C'est en général une solution pratique pour démarrer votre activité (aussi bien acheter ou fabriquer que vendre en Chine).<br/>Vous aurez ainsi une présence et une adresse chinoise sans avoir toutes les contraintes et les couts liées a une représentation plus formelle. Nous serons alors « vos yeux et vos oreilles » en Chine. Nous effectuerons toutes les missions que vous nous confiez au coup par coup. Vous pouvez ainsi prendre pied sur le continent chinois avec peu de frais, vous familiariser avec les codes du business en Chine et commencer à développer rapidement votre activité sans avoir besoin d'investir sur une large échelle.<br/>SERVICE CHINE vous propose de vous représenter en chine pour<br/>– <a href="/fabricationenchine">Fabriquer en Chine</a><br/>– <a href="/acheterenchine">Acheter en Chine</a><br/>– <a href="/exportationenchine">Exporter en Chine</a></p>
 
-    <div class="elementor-image"><img src="/assets/bureau-de-representation-creation.jpg" alt="bureau-de-representation-creation" width="640" height="228"></div>
+    <!-- 第二张图片保持不变（原 bureau-de-representation-creation.jpg） -->
+    <div class="elementor-image">
+      <img src="/assets/bureau-de-representation-creation.jpg" alt="bureau-de-representation-creation" width="640" height="228">
+    </div>
 
     <h5 id="representation-en-chine-creation">2) SERVICE-CHINE peut avec ses partenaires juridiques vous aider dans la création d'un bureau de représentation en Chine (RO)</h5>
     <p>Il est tout de même parfois utile de créer un véritable bureau de représentation en chine avec votre propre équipe. Avec nos partenaires juridiques nous sommes à même de vous aider dans cette tâche qui peut être ardue et qui nécessite certaine traduction de documents en chinois.<br/>Cette structure est toutefois la plus simple et ne constitue qu'une entité de liaison sans capital social, une entité d'étude et de préparation à l'installation d'implantations fixes qui peuvent être créées par la suite.<br/>Les tâches à accomplir sont relativement simples, tout en sachant que la Chine a des régions administratives ou les demandes peuvent être différentes d'une province à l'autre. Une étude personnalisée avec nos spécialistes vous en apprendra plus.</p>
 
-    <!-- 表单标题：改为 h3 并居中，与 index 一致 -->
+    <!-- 表单标题：第三行与上一行隔开一行 -->
     <h3 style="text-align:center; font-size:14pt; margin-top:30px;">
-      SERVICE-CHINE, votre bureau de représentation en Chine <br/>Consultez-nous !
+      SERVICE-CHINE, votre bureau de représentation en Chine <br/><br/>Consultez-nous !
     </h3>
 
-    <!-- 表单块：完全参照 index.astro 的结构与样式 -->
+    <!-- 表单块 -->
     <div style="margin-top:30px; background:#f5f5f5; padding:20px; border-radius:6px; text-align:center;">
-      <!-- 图片部分 -->
       <div style="margin-bottom:20px;">
         <img src="/assets/service-chine-contact-newsletter.jpg" alt="SERVICE CHINE CONTACT US" width="379" height="228" style="max-width:100%;">
         <p style="margin-top:10px;"><strong>Gratuit !</strong> Cliquez sur l'icône « Call me! » skype<br/>
@@ -48,28 +53,26 @@ const description = "Vous voulez vendre ou acheter en Chine, SERVICE-CHINE, votr
         </p>
         <p>Unit 903-6A, 9/., 33 Ashley Rd, Tsim Sha Tsui, Kowloon<br>HONG KONG</p>
         <div class="elementor-social-icons-wrapper" style="justify-content:center;">
-  <a class="elementor-icon" href="#"><i class="fab fa-facebook-f"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-twitter"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-instagram"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-youtube"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-weixin"></i></a>
-</div>
+          <a class="elementor-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-twitter"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-youtube"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-weixin"></i></a>
+        </div>
       </div>
-
-      <!-- 表单块：使用 inline-block 居中，宽度 70%，输入框100%撑满 -->
       <ContactForm />
     </div>
-    <!-- 表单结束 -->
 
+    <!-- 底部图片：只保留 Hong-Kong-service-chine.jpg，宽度90%，左对齐 -->
     <div style="margin-top:20px;">
-      <img src="/assets/Representation-hong-kong.jpeg" alt="Representation-hong-kong" width="640" height="271">
-      <img src="/assets/banner.png" alt="banner" width="640" height="114">
+      <img src="/assets/Hong-Kong-service-chine.jpg" alt="Hong-Kong-service-chine" style="width:90%; display:block;">
     </div>
+    <!-- banner.png 已删除 -->
   </div>
 </BaseLayout>
 
-<!-- 超链接样式：与 index.astro 完全一致 -->
+<!-- 超链接样式 -->
 <style>
   a {
     color: #DC214C !important;
