@@ -25,20 +25,25 @@ const description = "Avec nos services à la carte, réussissez votre voyage d'a
       4) <a href="#suivi-contact-chine">Suivi de vos contacts en Chine</a></p>
     </div>
 
-    <div class="flex-row">
-      <div class="col"><img src="/assets/arrivee-voyage-affaire-chine.jpg" alt="arrivee-voyage-affaire-chine" width="499" height="333"></div>
-      <div class="col"><img src="/assets/reception-voyage-affaire-chine.jpg" alt="reception-voyage-affaire-chine" width="260" height="260"></div>
+    <!-- 原两栏布局删除第二张图，仅保留 arrivee-voyage-affaire-chine.jpg -->
+    <div style="margin-bottom:20px;">
+      <img src="/assets/arrivee-voyage-affaire-chine.jpg" alt="arrivee-voyage-affaire-chine" width="499" height="333">
     </div>
 
     <h5 id="preparation-voyage-affaire-en-chine">1) Préparation du voyage d'affaire en Chine, prise de rendez-vous, organisation personnalisée</h5>
     <p>La réussite d'un voyage d'affaire en Chine consiste en une bonne préparation. Nous planifions suivant vos besoins les transports, les prise de rendez-vous, nous organisation vos visites de fournisseurs, vos visites d'usines suivant notre connaissance du terrain, la durée des parcours et les possibles aléas. Il est très délicat après 12 ou 15 heures de vol et 6 ou 7 heures de décalage horaire d'être efficace sans cette organisation.</p>
+    <!-- 插入 voyage-chine.jpg，宽度80%，左对齐 -->
+    <img src="/assets/voyage-chine.jpg" alt="Voyage en Chine" style="width:80%; display:block; margin-top:10px;">
 
     <h5 id="reception-voyage-en-chine">2) Réception, transferts et visite d'affaire</h5>
     <div class="flex-row">
       <div class="col">
         <p>Nos interprètes peuvent vous accueillir à l'aéroport et s'occuper de votre transfert à l'hotel. Un chauffeur peut vous conduire avec une de nos interprètes mise à disposition à vos rendez-vous d'affaires, vos visites d'usine. Un briefing et un débriefing peuvent s'avérer parfois nécessaire pour bien expliquer ce que vous souhaitez dire à vos interlocuteurs et comment vous souhaitez le dire. Nos interprètes, sans interférer dans vos affaires, peuvent également vous donner leur sentiment sur la bonne méthode pour faire passer un message en Chine.<br/>Service de traduction<br/>Interprète</p>
       </div>
-      <div class="col"><img src="/assets/Visite-usine-en-Chine.jpg" alt="visite usine" width="512" height="384"></div>
+      <div class="col">
+        <!-- 保留 Visite-usine-en-Chine.jpg，原样 -->
+        <img src="/assets/Visite-usine-en-Chine.jpg" alt="visite usine" width="512" height="384">
+      </div>
     </div>
 
     <h5 id="salons-et-foires-en-chine">3) Foires et salons spécialisés en Chine</h5>
@@ -46,7 +51,10 @@ const description = "Avec nos services à la carte, réussissez votre voyage d'a
       <div class="col">
         <p>Outre les visites d'usine, les foires et salons en Chine sont une bonne manière de créer des contacts entre l'Occident et la « première usine du monde ». Il existe des centaines de foires B2B en Chine. La plus grande est certainement la <a href="/salondecanton">foire de Canton</a> mais il en existe d'autres vraiment très spécialisées qui conviennent vraiment bien à des activités très ciblées. Dans ces foires la spécialisation est telle que les professionnels de certaines branches d'activités y retrouvent la presque totalité de leurs fournisseurs. C'est une bonne manière de prendre de nouveaux contacts et de faire jouer la concurrence. SERVICE-CHINE peut vous aider à trouver le salon professionnel qui vous convient et mettre ses services à votre disposition.</p>
       </div>
-      <div class="col"><img src="/assets/foire-de-canton-2.jpeg" alt="foire-de-canton" width="448" height="297"></div>
+      <div class="col">
+        <!-- 替换为 foire-de-canton-complex.jpg，宽度70%，左对齐 -->
+        <img src="/assets/foire-de-canton-complex.jpg" alt="foire-de-canton" style="width:70%; display:block;">
+      </div>
     </div>
 
     <h5 id="suivi-contact-chine">4) Suivi de vos contacts en Chine</h5>
@@ -54,13 +62,16 @@ const description = "Avec nos services à la carte, réussissez votre voyage d'a
       <div class="col">
         <p>Dans toutes ces démarches, notre service « Affaires », nos ingénieurs, nos interprètes et nos consultants peuvent vous aider efficacement pour que vous réussissiez votre voyage d'affaire en Chine. Du temps gagné c'est peut-être la possibilité pour vous de vous détendre et de faire un peu de tourisme. Nos interprètes sont à même de vous faire découvrir les principales curiosités touristiques et les bons restaurants de la ville visitée.<br/>Une fois votre visite terminée nous pouvons suivre vos contact et pérenniser votre action commerciale ou industrielle.<br/><a href="/bureauderepresentationenchine">Bureau de représentation en Chine</a><br/><a href="/acheterenchine">Acheter en Chine</a><br/><a href="/exportationenchine">Vendre en Chine</a></p>
       </div>
-      <div class="col"><img src="/assets/negociation-chine-1.jpeg" alt="negociation" width="640" height="479"></div>
+      <div class="col">
+        <!-- 替换为 Negociation-cooperation.jpg，宽度80%，左对齐 -->
+        <img src="/assets/Negociation-cooperation.jpg" alt="negociation" style="width:80%; display:block;">
+      </div>
     </div>
 
-    <!-- 表单标题（统一为 h3，同 index） -->
+    <!-- 表单标题：第二行强制不换行 -->
     <h3 style="text-align:center; font-size:14pt; margin-top:30px;">
       Votre voyage d'affaire avec SERVICE-CHINE<br/>
-      Préparation, accueil, visite nous rendons vos voyages d'affaires en Chine efficaces<br/>
+      <span style="white-space:nowrap;">Préparation, accueil, visite nous rendons vos voyages d'affaires en Chine efficaces</span><br/>
       Consultez-nous !
     </h3>
 
@@ -74,13 +85,13 @@ const description = "Avec nos services à la carte, réussissez votre voyage d'a
         </p>
         <p>Unit 903-6A, 9/., 33 Ashley Rd, Tsim Sha Tsui, Kowloon<br>HONG KONG</p>
         <div class="elementor-social-icons-wrapper" style="justify-content:center;">
-  <a class="elementor-icon" href="#"><i class="fab fa-facebook-f"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-twitter"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-instagram"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-youtube"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-weixin"></i></a>
-</div>
+          <a class="elementor-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-twitter"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-youtube"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-weixin"></i></a>
+        </div>
       </div>
 
       <!-- 表单块：使用 inline-block 居中，宽度 70%，输入框100%撑满 -->
@@ -88,7 +99,10 @@ const description = "Avec nos services à la carte, réussissez votre voyage d'a
     </div>
     <!-- 表单结束 -->
 
-    <div style="margin-top:20px;"><img src="/assets/Visite-en-Chine.jpeg" alt="visite chine" width="600" height="259"></div>
+    <!-- 底部图片替换为 preparer-visite-chine.jpg，宽度100%，左对齐 -->
+    <div style="margin-top:20px;">
+      <img src="/assets/preparer-visite-chine.jpg" alt="Préparer visite Chine" style="width:100%; display:block;">
+    </div>
   </div>
 </BaseLayout>
 
