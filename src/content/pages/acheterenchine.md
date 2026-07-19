@@ -19,7 +19,9 @@ SERVICE-CHINE est une société francophone basée à Guangzhou (Canton) et à H
 4. [Disponibilité et Négociation](#disponibilite-negociation)
 5. [Conformité et logistique pour les achats en Chine](#conformite-achats-chine)
 
-![](https://service-chine.sabrinabin-fr.workers.dev/assets/chine-import-export.jpg)
+<img src="https://service-chine.sabrinabin-fr.workers.dev/assets/chine-import-export.jpg" 
+     alt="chine-import-export" 
+     style="max-width:50%; height:auto; display:block;" />
 
 #### 1) Acheter en Chine
 
@@ -51,4 +53,4 @@ En effet même si le contrôle final est indispensable, il vaut mieux « préven
 
 Il en est de même pour la logistique en Chine. Ici tout est possible. De Chine partent la majorité des produits manufacturés pour la planète, aussi, les entreprises de logistique foisonnent. Tout est possible mais tout est compliqué… SERVICE-CHINE avec son expérience vous offrira des possibilités pour acheminer vos achats en Chine dans votre pays.
 
-![](https://service-chine.sabrinabin-fr.workers.dev/assets/logistics-bateau.jpg)
+<img src="https://service-chine.sabrinabin-fr.workers.dev/assets/logistics-bateau.jpg" alt="logistics-bateau" style="width:70%; display:block;>
