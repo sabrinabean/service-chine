@@ -53,4 +53,6 @@ En effet même si le contrôle final est indispensable, il vaut mieux « préven
 
 Il en est de même pour la logistique en Chine. Ici tout est possible. De Chine partent la majorité des produits manufacturés pour la planète, aussi, les entreprises de logistique foisonnent. Tout est possible mais tout est compliqué… SERVICE-CHINE avec son expérience vous offrira des possibilités pour acheminer vos achats en Chine dans votre pays.
 
-<img src="https://service-chine.sabrinabin-fr.workers.dev/assets/logistics-bateau.jpg" alt="logistics-bateau" style="width:70%; display:block; />
+<img src="https://service-chine.sabrinabin-fr.workers.dev/assets/logistics-bateau.jpg" 
+     alt="logistics-bateau" 
+     style="max-width:70%; height:auto; display:block;" />
