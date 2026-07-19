@@ -2,7 +2,6 @@
 title: "Export-Import Chine, 5 bonnes raisons de choisir - SERVICE CHINE"
 description: "SERVICE-CHINE: Import-Export Chine, les 5 bonnes raisons d'importer de Chine ou d'exporter en Chine avec notre expetise et nos conseils"
 date: 2026-07-17
-path：/index
 ---
 
 # Importer de Chine, trouvez votre fabricant, votre grossiste Chinois  
