@@ -40,41 +40,37 @@ const encodedTitle = encodeURIComponent(title);
       Publié le {formattedDate}
     </p>
 
-    <!-- 文章正文 + 右侧分享图标（flex 布局） -->
-    <div style="display:flex; gap:20px; align-items:flex-start;">
+    <!-- 社交分享图标（新增） -->
+    <div class="elementor-social-icons-wrapper" style="display:flex; justify-content:center; gap:12px; margin-bottom:1.5em;">
+      <!-- Facebook 分享 -->
+      <a class="elementor-icon" href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`} target="_blank" rel="noopener" aria-label="Partager sur Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <!-- Twitter 分享 -->
+      <a class="elementor-icon" href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`} target="_blank" rel="noopener" aria-label="Partager sur Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <!-- Instagram（无直接分享，可改为个人主页或留空） -->
+      <a class="elementor-icon" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <!-- LinkedIn 分享 -->
+      <a class="elementor-icon" href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`} target="_blank" rel="noopener" aria-label="Partager sur LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <!-- YouTube（可改为频道链接） -->
+      <a class="elementor-icon" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <!-- WeChat（通常需扫码或复制链接，暂时保留 #） -->
+      <a class="elementor-icon" href="#" aria-label="WeChat">
+        <i class="fab fa-weixin"></i>
+      </a>
+    </div>
 
-      <!-- 文章正文 -->
-      <div style="flex:1; min-width:0; font-size:15px; line-height:1.8;">
-        <Content />
-      </div>
-
-      <!-- 右侧分享图标（水平排列，整体右对齐） -->
-      <div class="elementor-social-icons-wrapper" style="flex-shrink:0; display:flex; flex-direction:row; gap:10px; justify-content:flex-end; flex-wrap:wrap; padding-top:4px;">
-        <!-- Facebook 分享 -->
-        <a class="elementor-icon" href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`} target="_blank" rel="noopener" aria-label="Partager sur Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <!-- Twitter 分享 -->
-        <a class="elementor-icon" href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`} target="_blank" rel="noopener" aria-label="Partager sur Twitter">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <!-- Instagram（无标准分享链接，可改为个人主页） -->
-        <a class="elementor-icon" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <!-- LinkedIn 分享 -->
-        <a class="elementor-icon" href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`} target="_blank" rel="noopener" aria-label="Partager sur LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <!-- YouTube（可改为频道链接） -->
-        <a class="elementor-icon" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">
-          <i class="fab fa-youtube"></i>
-        </a>
-        <!-- WeChat（通常需扫码或复制链接，暂保留 #） -->
-        <a class="elementor-icon" href="#" aria-label="WeChat">
-          <i class="fab fa-weixin"></i>
-        </a>
-      </div>
+    <!-- 正文 -->
+    <div style="font-size:15px; line-height:1.8;">
+      <Content />
     </div>
 
     <!-- 返回链接 -->
