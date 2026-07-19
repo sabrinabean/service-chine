@@ -18,16 +18,15 @@ const description = "Durant votre voyage d'affaire en Chine vous cherchez un int
     </h2>
 
     <div class="elementor-text-editor">
-      <!-- 修改此处：字体调整为 11pt，并强制每项不换行 -->
       <p style="font-size:11pt; line-height:1.6;">
         <span style="white-space:nowrap;">1) <a href="#interprete-francais-chinois" style="font-size:11pt;">Service-Chine basé en Chine, un service professionnel d'interprétariat Français-Chinois-Anglais</a></span><br/>
         <span style="white-space:nowrap;">2) <a href="#traduction-chinois-francais" style="font-size:11pt;">Service Chine pour traduire vos documents commerciaux, correspondances, etc.</a></span>
       </p>
     </div>
 
-    <div class="flex-row">
-      <div class="col"><img src="/assets/reception-voyage-affaire-chine.jpg" alt="reception-voyage-affaire-chine" width="260" height="260"></div>
-      <div class="col"><img src="/assets/service-chine-laura.jpg" alt="service-chine-laura" width="444" height="336"></div>
+    <!-- 仅保留左栏图片，右栏删除 -->
+    <div style="margin-bottom:20px;">
+      <img src="/assets/voyage-daffaires.jpg" alt="Voyage d'affaires" style="width:80%; display:block;">
     </div>
 
     <h5 id="interprete-francais-chinois">1) SERVICE-CHINE un service professionnel d'interprétariat Français Chinois Anglais</h5>
@@ -35,15 +34,16 @@ const description = "Durant votre voyage d'affaire en Chine vous cherchez un int
 
     <h5 id="traduction-chinois-francais">2) SERVIICE CHINE pour traduire vos documents professionnels commerciaux, correspondances, etc.</h5>
     <p>SERVICE-CHINE c'est aussi dans un cadre professionnel, un service de traduction français chinois, chinois français. En effet si vous souhaitez <a href="/acheterenchine">acheter en Chine</a> ou <a href="/exportationenchine">exporter en Chine</a> il est souvent nécessaire de traduire des documents, des notices, des papiers officiels, etc. Nos traducteurs chinois seront à même de prendre en charge ce travail et même pour vos papiers officiels de vous les faire certifier par la « chambre des notaires Chinoise » qui est l'autorité certificatrice en Chine.<br/>Nos traducteurs et traductrices chinoises vous établieront un devis avant toute prestation. Il est bien sur préférable de nous adresser vos documents sous forme « traitement de texte » afin d'aller plus vite. Nos traductions en chinois français ou français chinois sont systématiquement relues par une traductrice ou un traducteur francais et chinois.</p>
+    <!-- 插入 sabrina-service-chine.png，宽度70%，左对齐 -->
+    <img src="/assets/sabrina-service-chine.png" alt="Sabrina service Chine" style="width:70%; display:block; margin-top:10px;">
 
-    <!-- 表单标题 -->
+    <!-- 表单标题：第三行与上一行隔开一行 -->
     <h3 style="text-align:center; font-size:14pt; margin-top:30px;">
-      SERVICE-CHINE Service d'interprète Français Chinois Anglais<br/>SERVICE Chine Service de traduction de vos documents Français Chinois<br/>Consultez-nous !
+      SERVICE-CHINE Service d'interprète Français Chinois Anglais<br/>SERVICE Chine Service de traduction de vos documents Français Chinois<br/><br/>Consultez-nous !
     </h3>
 
-    <!-- 表单块：完全参照 index.astro 的结构与样式 -->
+    <!-- 表单块 -->
     <div style="margin-top:30px; background:#f5f5f5; padding:20px; border-radius:6px; text-align:center;">
-      <!-- 图片部分 -->
       <div style="margin-bottom:20px;">
         <img src="/assets/service-chine-contact-newsletter.jpg" alt="SERVICE CHINE CONTACT US" width="379" height="228" style="max-width:100%;">
         <p style="margin-top:10px;"><strong>Gratuit !</strong> Cliquez sur l'icône « Call me! » skype<br/>
@@ -51,28 +51,25 @@ const description = "Durant votre voyage d'affaire en Chine vous cherchez un int
         </p>
         <p>Unit 903-6A, 9/., 33 Ashley Rd, Tsim Sha Tsui, Kowloon<br>HONG KONG</p>
         <div class="elementor-social-icons-wrapper" style="justify-content:center;">
-  <a class="elementor-icon" href="#"><i class="fab fa-facebook-f"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-twitter"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-instagram"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-youtube"></i></a>
-  <a class="elementor-icon" href="#"><i class="fab fa-weixin"></i></a>
-</div>
+          <a class="elementor-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-twitter"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-instagram"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-youtube"></i></a>
+          <a class="elementor-icon" href="#"><i class="fab fa-weixin"></i></a>
+        </div>
       </div>
-
-      <!-- 表单块：使用 inline-block 居中，宽度 70%，输入框100%撑满 -->
       <ContactForm />
     </div>
-    <!-- 表单结束 -->
 
+    <!-- 底部图片：删除 foire-de-canton-guangzhou.jpg，banner.png 替换为 visite-touristique-chine.jpg 100% -->
     <div style="margin-top:20px;">
-      <img src="/assets/foire-de-canton-guangzhou.jpg" alt="foire-de-canton-guangzhou" width="640" height="274">
-      <img src="/assets/banner.png" alt="banner" width="640" height="114">
+      <img src="/assets/visite-touristique-chine.jpg" alt="Visite touristique Chine" style="width:100%; display:block;">
     </div>
   </div>
 </BaseLayout>
 
-<!-- 超链接样式：与 index.astro 完全一致 -->
+<!-- 超链接样式 -->
 <style>
   a {
     color: #DC214C !important;
