@@ -18,14 +18,9 @@ const { page } = Astro.props;
 const { Content } = await render(page);
 const title = page.data.title || 'Page sans titre';
 const description = page.data.description || '';
-
-// ====== 判断是否为首页 ======
-// 条件：文件名是 index.md 或 path 为 "/"
-const isHome = page.id === 'index.md' || page.data.path === '/';
-// 如果您的首页 slug 是 'home'，也可以加入：|| slug === 'home'
 ---
 
-<BaseLayout title={title} description={description} isHome={isHome}>
+<BaseLayout title={title} description={description}>
   <div slot="content">
     <!-- ====== 主内容区域 ====== -->
     <div class="page-content" id="main-content">
@@ -66,11 +61,190 @@ const isHome = page.id === 'index.md' || page.data.path === '/';
 </BaseLayout>
 
 <style is:global>
-  /* 所有样式保持不变，无需修改 */
-  /* ... 您的原有样式 ... */
+  /* ---- 全局正文 16px ---- */
+  .page-content * {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* ---- 标题恢复 ---- */
+  .page-content h1 {
+    font-size: 13pt !important;
+    text-align: center !important;
+    margin-bottom: 0.75em !important;
+    font-weight: 600 !important;
+  }
+  .page-content h2 {
+    font-size: 12pt !important;
+    text-align: center !important;
+    color: #DC0000 !important;
+    margin-top: 0.75em !important;
+    margin-bottom: 1em !important;
+    font-weight: 600 !important;
+  }
+  .page-content h3,
+  .page-content h4 {
+    font-size: 14px !important;
+  }
+  .page-content h5 {
+    font-size: 10pt !important;
+    font-weight: 600 !important;
+    margin-top: 1.2em !important;
+    margin-bottom: 0.5em !important;
+  }
+
+  /* ---- 超链接（无下划线） ---- */
+  .page-content a {
+    color: #DC214C !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+  }
+  .page-content a:hover {
+    color: #b01a3a !important;
+    text-decoration: none !important;
+  }
+
+  /* ---- 列表 ---- */
+  .page-content ol,
+  .page-content ul {
+    padding-left: 20px !important;
+    margin: 10px 0 !important;
+  }
+  .page-content ol li,
+  .page-content ul li {
+    margin-bottom: 4px !important;
+  }
+
+  /* ---- 图片 ---- */
+  .page-content .elementor-image {
+    margin: 15px 0;
+    text-align: center;
+  }
+  .page-content .elementor-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  .page-content img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ---- 两栏 ---- */
+  .page-content .flex-row {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .page-content .flex-row .col {
+    flex: 1 1 45%;
+    min-width: 250px;
+  }
+
+  /* ---- 底部表单 ---- */
+  .footer-contact p,
+  .footer-contact li,
+  .footer-contact div:not(.elementor-social-icons-wrapper) {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+  .footer-contact a {
+    color: #DC214C !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+  }
+  .footer-contact a:hover {
+    color: #b01a3a !important;
+    text-decoration: none !important;
+  }
+
+  /* ========== 强制覆盖 ContactForm 组件根元素的内联样式 ========== */
+  .footer-contact .form-wrapper > div {
+    width: 100% !important;
+    display: block !important;
+    text-align: left !important;
+  }
+
+  /* 强制表单内所有元素 16px，左对齐 */
+  .footer-contact form,
+  .footer-contact input,
+  .footer-contact textarea,
+  .footer-contact label,
+  .footer-contact .wpcf7-form-control-wrap,
+  .footer-contact .wpcf7-list-item-label {
+    font-size: 16px !important;
+    box-sizing: border-box;
+    text-align: left !important;
+  }
+
+  /* 输入框宽度100%，左对齐文本，内边距舒适 */
+  .footer-contact input:not([type="submit"]),
+  .footer-contact textarea {
+    width: 100% !important;
+    padding: 10px 14px !important;
+    font-size: 16px !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: left !important;
+  }
+
+  /* ====== 发送按钮：强制宽度自适应，紧贴文字 ====== */
+  .footer-contact input[type="submit"] {
+    font-size: 16px !important;
+    padding: 6px 12px !important;      /* 左右 12px，比文字略宽 */
+    width: auto !important;
+    min-width: 0 !important;
+    background-color: #DC214C;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block !important;
+    text-align: center !important;
+    margin: 0 !important;
+  }
+  .footer-contact input[type="submit"]:hover {
+    background-color: #b01a3a;
+  }
+
+  /* 按钮所在的 <p> 标签：居中，无边距 */
+  .footer-contact p:has(input[type="submit"]) {
+    text-align: center !important;   /* 恢复居中 */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 标签和控件块级显示，左对齐 */
+  .footer-contact .wpcf7-form-control-wrap {
+    display: block !important;
+    margin-bottom: 15px !important;
+  }
+  .footer-contact label {
+    display: block !important;
+    margin-bottom: 5px !important;
+    font-weight: 500;
+  }
+
+  /* 表单整体宽度100% */
+  .footer-contact form {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 </style>
 
+<!-- ====== 客户端脚本：为 h4 添加 id，匹配链接中的锚点 ====== -->
 <script>
-  // 锚点跳转脚本保持不变
-  // ...
+  document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('.page-content ol a[href^="#"], .page-content ul a[href^="#"]');
+    const headings = document.querySelectorAll('.page-content h4');
+    links.forEach((link, index) => {
+      const anchor = link.getAttribute('href');
+      if (anchor && anchor.startsWith('#')) {
+        const id = anchor.substring(1);
+        if (headings[index]) {
+          headings[index].id = id;
+        }
+      }
+    });
+  });
 </script>
