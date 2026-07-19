@@ -18,6 +18,13 @@ const formattedDate = post.data.pubDate.toLocaleDateString("fr-FR", {
   month: "long",
   day: "numeric",
 });
+
+// 构建当前页面的完整 URL（用于分享）
+const site = import.meta.env.SITE || "https://votresite.com"; // 请替换为你的实际域名
+const currentUrl = new URL(Astro.url.pathname, site).href;
+const title = post.data.title;
+const encodedUrl = encodeURIComponent(currentUrl);
+const encodedTitle = encodeURIComponent(title);
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
@@ -32,6 +39,34 @@ const formattedDate = post.data.pubDate.toLocaleDateString("fr-FR", {
     <p style="color:#888; font-size:0.9rem; text-align:center; margin-bottom:1.5em;">
       Publié le {formattedDate}
     </p>
+
+    <!-- 社交分享图标（新增） -->
+    <div class="elementor-social-icons-wrapper" style="display:flex; justify-content:center; gap:12px; margin-bottom:1.5em;">
+      <!-- Facebook 分享 -->
+      <a class="elementor-icon" href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`} target="_blank" rel="noopener" aria-label="Partager sur Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <!-- Twitter 分享 -->
+      <a class="elementor-icon" href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`} target="_blank" rel="noopener" aria-label="Partager sur Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <!-- Instagram（无直接分享，可改为个人主页或留空） -->
+      <a class="elementor-icon" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <!-- LinkedIn 分享 -->
+      <a class="elementor-icon" href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`} target="_blank" rel="noopener" aria-label="Partager sur LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <!-- YouTube（可改为频道链接） -->
+      <a class="elementor-icon" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <!-- WeChat（通常需扫码或复制链接，暂时保留 #） -->
+      <a class="elementor-icon" href="#" aria-label="WeChat">
+        <i class="fab fa-weixin"></i>
+      </a>
+    </div>
 
     <!-- 正文 -->
     <div style="font-size:15px; line-height:1.8;">
