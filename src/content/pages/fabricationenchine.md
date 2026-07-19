@@ -19,15 +19,15 @@ Voici les principales étapes pour réussir et perpétuer vos **fabrications en 
 
 ![](https://service-chine.sabrinabin-fr.workers.dev/assets/fabrication-en-chine.jpg)
 
-<h2 id="fabriquer-en-chine-definition">1) Fabriquer en Chine; définition du besoin</h2>
+<h4 id="fabriquer-en-chine-definition">1) Fabriquer en Chine; définition du besoin</h4>
 
 Trouvez votre fabricant chinois et travailler avec lui sera d'autant plus simple que votre cahier des charges ou l'énoncé de votre besoin est clair et peut être bien compris. Une bonne partie des problèmes que les acheteurs rencontrent est souvent une mauvaise compréhension de ce besoin par le fabricant en Chine. Plus le cahier des charge est détaillé et précis, moins il y aura de place à l'erreur et aux problèmes. Les dessins techniques et les échantillons sont un réel « plus ». Il faudra également définir votre demande en termes de prix, quantité, délai de livraison et toutes les informations que vous jugez utiles.
 
-<h2 id="recherche-fabricant-audit">2) Recherche du fabricant chinois et Audit de l'usine en Chine</h2>
+<h4 id="recherche-fabricant-audit">2) Recherche du fabricant chinois et Audit de l'usine en Chine</h4>
 
 A partir de la réception de votre cahier des charges SERVICE-CHINE, va rechercher les meilleurs fournisseurs qui répondant à votre demande et vous éviter beaucoup de pièges. En effet certaines très bonnes usines en Chine n'on souvent qu'un très petit site internet en Chinois (elles n'en ont pas besoin), alors que certains agents plus ou moins honnêtes possèdent de magnifiques outils marketing !En Chine le relationnel (Guan Xi) et la langue Chinoise sont des éléments capitaux pour faire fabriquer. Une fois une sélection de fournisseurs faite, nous allons auditer « directement » les usines chinoise avec votre cahier des charges. Avec toutes ces informations et nos conseils, vous serez en mesure de pouvoir choisir sereinement votre fabricant chinois.
 
-<h2 id="echantillonnage">3) Echantillonnage</h2>
+<h4 id="echantillonnage">3) Echantillonnage</h4>
 
 La phase échantillonnage est très importante. Vous allez pouvoir juger « sur pièce » du produit. Avec votre modèle et votre cahier des charges, nous allons faire fabriquer un prototype et vous l'envoyer en « Express ». Vous pourrez alors « critiquer » l'échantillon et demander si nécessaire des modifications ou des améliorations.
 
@@ -37,7 +37,7 @@ Nous avons notre dessinateur de métal. Nous pouvons vous aider aussi à réalis
 
 ![](https://service-chine.sabrinabin-fr.workers.dev/assets/echantillon-3.jpg)
 
-<h2 id="negociation-fabricant">4) Négociation avec le fabricant chinois</h2>
+<h4 id="negociation-fabricant">4) Négociation avec le fabricant chinois</h4>
 
 Le fabricant chinois est maitre en matière de négociation. Pour fabriquer en Chine il faut s'adapter aux coutumes locales (nous avons plus de 15 ans d'expérience). Tous les paramètres de votre cahier des charges vont entrer en jeu. Notre équipe est rompue à ces pratiques et sait se faire respecter tout en trouvant un accord équilibré.
 
@@ -45,7 +45,7 @@ Pour donner un seul exemple, on peut parler du prix-produit Un [fabricant chinoi
 
 ![](https://service-chine.sabrinabin-fr.workers.dev/assets/exporter-chine-service-clients.jpg)
 
-<h2 id="suivi-fabrication-controle">5) Suivi de fabrication, contrôle qualité en Chine, suivi logistique</h2>
+<h4 id="suivi-fabrication-controle">5) Suivi de fabrication, contrôle qualité en Chine, suivi logistique</h4>
 
 Sans contrôle qualité en Chine comme ailleurs votre produit risque d'être invendable. Les fabricants chinois savent produire avec un remarquable ratio qualité/prix. On entend beaucoup de critiques sur la fabrication chinoise mais il faut bien savoir qu'en grande partie les problèmes viennent d'une mauvaise compréhension de la culture d'entreprise chinoise par les occidentaux . Ceux qui savent faire **fabriquer en Chine** sont certainement dans les plus performants au monde.
 
