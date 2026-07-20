@@ -19,8 +19,8 @@ const description = "Durant votre voyage d'affaire en Chine vous cherchez un int
 
     <div class="elementor-text-editor">
       <p style="font-size:11pt; line-height:1.6;">
-        <span style="white-space:nowrap;">1) <a href="#interprete-francais-chinois" style="font-size:11pt;">Service-Chine basé en Chine, un service professionnel d'interprétariat Français-Chinois-Anglais</a></span><br/>
-        <span style="white-space:nowrap;">2) <a href="#traduction-chinois-francais" style="font-size:11pt;">Service Chine pour traduire vos documents commerciaux, correspondances, etc.</a></span>
+        <span class="no-wrap-link">1) <a href="#interprete-francais-chinois" style="font-size:11pt;">Service-Chine basé en Chine, un service professionnel d'interprétariat Français-Chinois-Anglais</a></span><br/>
+        <span class="no-wrap-link">2) <a href="#traduction-chinois-francais" style="font-size:11pt;">Service Chine pour traduire vos documents commerciaux, correspondances, etc.</a></span>
       </p>
     </div>
 
@@ -74,5 +74,17 @@ const description = "Durant votre voyage d'affaire en Chine vous cherchez un int
   }
   a:hover {
     color: #b01a3a !important;
+  }
+
+  /* PC端强制不换行 */
+  .no-wrap-link {
+    white-space: nowrap;
+  }
+
+  /* 手机端自动换行 */
+  @media (max-width: 768px) {
+    .no-wrap-link {
+      white-space: normal;
+    }
   }
 </style>
