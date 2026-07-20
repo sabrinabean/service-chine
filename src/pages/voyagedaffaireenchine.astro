@@ -27,7 +27,7 @@ const description = "Avec nos services à la carte, réussissez votre voyage d'a
 
     <!-- 原两栏布局删除第二张图，仅保留 arrivee-voyage-affaire-chine.jpg -->
     <div style="margin-bottom:20px;">
-      <img src="/assets/arrivee-voyage-affaire-chine.jpg" alt="arrivee-voyage-affaire-chine" width="499" height="333">
+      <img src="/assets/arrivee-voyage-affaire-chine.jpg" alt="arrivee-voyage-affaire-chine" style="width:60%; display:block; margin-top:10px;">
     </div>
 
     <h5 id="preparation-voyage-affaire-en-chine">1) Préparation du voyage d'affaire en Chine, prise de rendez-vous, organisation personnalisée</h5>
@@ -42,7 +42,7 @@ const description = "Avec nos services à la carte, réussissez votre voyage d'a
       </div>
       <div class="col">
         <!-- 保留 Visite-usine-en-Chine.jpg，原样 -->
-        <img src="/assets/Visite-usine-en-Chine.jpg" alt="visite usine" width="512" height="384">
+        <img src="/assets/Visite-usine-en-Chine.jpg" alt="visite usine" style="width:70%; display:block; margin-top:10px;">
       </div>
     </div>
 
@@ -68,10 +68,10 @@ const description = "Avec nos services à la carte, réussissez votre voyage d'a
       </div>
     </div>
 
-    <!-- 表单标题：第二行强制不换行 -->
+    <!-- 表单标题：PC端强制不换行，手机端自动换行 -->
     <h3 style="text-align:center; font-size:14pt; margin-top:30px;">
       Votre voyage d'affaire avec SERVICE-CHINE<br/>
-      <span style="white-space:nowrap;">Préparation, accueil, visite nous rendons vos voyages d'affaires en Chine efficaces</span><br/>
+      <span class="no-wrap-title">Préparation, accueil, visite nous rendons vos voyages d'affaires en Chine efficaces</span><br/>
       <br/>Consultez-nous !
     </h3>
 
@@ -111,5 +111,17 @@ const description = "Avec nos services à la carte, réussissez votre voyage d'a
   }
   a:hover {
     color: #b01a3a !important;
+  }
+
+  /* PC端强制不换行 */
+  .no-wrap-title {
+    white-space: nowrap;
+  }
+
+  /* 手机端自动换行 */
+  @media (max-width: 768px) {
+    .no-wrap-title {
+      white-space: normal;
+    }
   }
 </style>
